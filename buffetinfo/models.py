@@ -14,11 +14,11 @@ class Buffet(models.Model):
     rating = models.FloatField()
     created_date = models.DateTimeField(
             default=timezone.now)
-    updated_date = models.DateTimeField(
+    published_date = models.DateTimeField(
             blank=True, null=True)
 
-    def update(self):
-        self.updated_date = timezone.now()
+    def publish(self):
+        self.published_date = timezone.now()
         self.save()
 
     def __str__(self):
