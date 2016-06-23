@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def buffet_list(request):
+    return render(request, 'buffetinfo/buffet_list.html', {})
