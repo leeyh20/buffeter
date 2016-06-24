@@ -1,18 +1,14 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <div>
-    <h1><a href="/">Django Girls Blog</a></h1>
-</div>
 
-{% for buffet in buffets %}
-    <div>
-        <p>published: {{ buffet.published_date }}</p>
-        <h1><a href="">{{ buffet.name }}</a></h1>
-        <p>{{ buffet.desc|linebreaksbr }}</p>
-    </div>
-{% endfor %}
-    </body>
-</html>
+{% extends 'buffetinfo/base.html' %}
+
+{% block content %}
+    {% for buffet in buffets %}
+        <div class = "buffet">
+            <div class = "date">
+                <p>published: {{ buffet.published_date }}</p>
+            </div>
+            <h1><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></h1>
+            <p>{{ buffet.desc|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
