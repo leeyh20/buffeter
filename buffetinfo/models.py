@@ -1,16 +1,24 @@
 from django.db import models
 from django.utils import timezone
 
+
+# TO DO: LINK TO SOME GOVT DATA API AND TURN IT INTO THIS TUPLE
+LOCATION_CHOICES = (
+    ('Jurong East', 'Jurong East'),
+    ('Bukit Batok', 'Bukit Batok'),
+    ('Bukit Gombak', 'Bukit Gombak'),
+    ('Choa Chu Kang', 'Choa Chu Kang'),
+)
 class Buffet(models.Model):
     author = models.ForeignKey('auth.User')
     name = models.CharField(max_length=200)
-    location = models.CharField(max_length=200)
+    location = models.CharField(max_length=200, choices=LOCATION_CHOICES)
     desc = models.TextField()
     hrs_opening = models.TimeField(help_text="Please use the following format: <em>HH:MM:SS</em>. 24-hour format")
     hrs_closing = models.TimeField(help_text="Please use the following format: <em>HH:MM:SS</em>. 24-hour format.")
     price = models.FloatField(help_text="in S$")
-    child_price = models.FloatField()
-    rating = models.FloatField()
+    child_price = models.FloatField(default="", blank=True, null=True)
+    rating = models.FloatField(help_text = "0 to 1, where 0 is no stars and 1 is 5 stars")
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
@@ -19,7 +27,7 @@ class Buffet(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
-
+        
     def __str__(self):
         return self.name
 
