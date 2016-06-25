@@ -6,7 +6,14 @@
             <div class="date">
                 {{ buffet.published_date }}
             </div>
+        {% else %}
+        <a class="btn btn-default" href="{% url 'buffetinfo.views.buffet_publish' pk=buffet.pk %}">Publish</a>
         {% endif %}
+
+        {% if user.is_authenticated %}
+        	<a class="btn btn-default" href="{% url 'buffet_edit' pk=buffet.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        	<a class="btn btn-default" href="{% url 'buffet_remove' pk=buffet.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+       	{% endif %}
         <h1>{{ buffet.name }}</h1>
         <p>{{  buffet.desc|linebreaksbr }}</p>
     </div>

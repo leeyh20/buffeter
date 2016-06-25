@@ -1,0 +1,11 @@
+{% extends 'buffetinfo/base.html' %}
+
+{% block content %}
+    {% for buffet in buffets %}
+        <div class="buffet">
+            <p class="date">created: {{ buffet.created_date|date:'d-m-Y' }}</p>
+            <h1><a href="{% url 'buffetinfo.views.buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></h1>
+            <p>{{ buffet.desc|truncatechars:200 }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

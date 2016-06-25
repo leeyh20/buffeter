@@ -11,7 +11,11 @@
     </head>
     <body>
         <div class="page-header">
-            <a href="{% url 'buffet_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'buffet_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="{% url 'buffet_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+            {% endif %}
+
             <h1><a href="/">Buffeter</a></h1>
         </div>
 
