@@ -14,6 +14,7 @@ def buffet_detail(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
     return render(request, 'buffetinfo/buffet_detail.html', {'buffet': buffet})
 
+@login_required
 def buffet_new(request):
     if request.method == "POST":
         form = BuffetForm(request.POST)
@@ -28,6 +29,7 @@ def buffet_new(request):
         form = BuffetForm()
     return render(request, 'buffetinfo/buffet_edit.html', {'form': form})
 
+@login_required
 def buffet_edit(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
     if request.method == "POST":
@@ -43,15 +45,18 @@ def buffet_edit(request, pk):
         form = BuffetForm(instance=buffet)
     return render(request, 'buffetinfo/buffet_edit.html', {'form': form})
 
+@login_required
 def buffet_draft_list(request):
     buffets = Buffet.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'buffetinfo/buffet_draft_list.html', {'buffets': buffets})
 
+@login_required
 def buffet_publish(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
     buffet.publish()
     return redirect('buffetinfo.views.buffet_detail', pk=pk)
 
+@login_required
 def buffet_remove(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
     buffet.delete()
