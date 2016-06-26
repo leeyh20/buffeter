@@ -39,8 +39,15 @@ h1, h2, h3, h4 {
 
 .buffet {
     margin-bottom: 70px;
+    border-radius: 8px;
+    border: solid 1px #d0d0d0;
+    padding-left: 20px;
 }
 
 .buffet h1 a, .buffet h1 a:visited {
     color: #000000;
+}
+
+.review {
+    margin: 20px 0px 20px 20px;
 }

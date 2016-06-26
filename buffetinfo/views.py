@@ -1,9 +1,10 @@
 
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import Buffet
-from .forms import BuffetForm
+from .models import Buffet, Review
+from .forms import BuffetForm, ReviewForm
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 def buffet_list(request):
 	buffets = Buffet.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -55,3 +56,30 @@ def buffet_remove(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
     buffet.delete()
     return redirect('buffetinfo.views.buffet_list')
+
+@login_required
+def add_review_to_buffet(request, pk):
+    buffet = get_object_or_404(Buffet, pk=pk)
+    if request.method == "POST":
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.author = request.user
+            review.buffet = buffet
+            review.save()
+            return redirect('buffetinfo.views.buffet_detail', pk=buffet.pk)
+    else:
+        form = ReviewForm()
+    return render(request, 'buffetinfo/add_review_to_buffet.html', {'form': form})
+
+@login_required
+def review_approve(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    review.approve()
+    return redirect('buffetinfo.views.buffet_detail', pk=review.buffet.pk)
+
+@login_required
+def review_remove(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    review.delete()
+    return redirect('buffetinfo.views.buffet_detail', pk=review.buffet.pk)

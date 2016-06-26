@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+import statistics
 
 # TO DO: LINK TO SOME GOVT DATA API AND TURN IT INTO THIS TUPLE
 LOCATION_CHOICES = (
@@ -18,7 +19,6 @@ class Buffet(models.Model):
     hrs_closing = models.TimeField(help_text="Please use the following format: <em>HH:MM:SS</em>. 24-hour format.")
     price = models.FloatField(help_text="in S$")
     child_price = models.FloatField(default="", blank=True, null=True)
-    rating = models.FloatField(help_text = "0 to 1, where 0 is no stars and 1 is 5 stars")
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
@@ -31,4 +31,36 @@ class Buffet(models.Model):
     def __str__(self):
         return self.name
 
-        #calcuateeaveragerating
+    #calcuateeaveragerating
+    def average_rating(self):
+        all_ratings = map(lambda x: x.rating, self.reviews.filter(approved_review=True))
+        if (self.reviews.count() > 0):
+            return statistics.mean(all_ratings)
+        return 0.0
+
+    def approved_reviews(self):
+        return self.reviews.filter(approved_review=True)
+
+
+class Review(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    author = models.ForeignKey('auth.User')
+    buffet = models.ForeignKey(Buffet, related_name='reviews')
+    #pub_date = models.DateTimeField('date published')
+    created_date = models.DateTimeField(default=timezone.now)
+    comment = models.TextField()
+    approved_review = models.BooleanField(default=False)
+    rating = models.IntegerField(choices=RATING_CHOICES)
+
+    def approve(self):
+        self.approved_review = True
+        self.save()
+
+    def __str__(self):
+        return self.comment

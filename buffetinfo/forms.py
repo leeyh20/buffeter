@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Buffet
+from .models import Buffet, Review
 
 from datetimewidget.widgets import TimeWidget
 
@@ -17,3 +17,10 @@ class BuffetForm(forms.ModelForm):
             'desc': "Description",
         }
         fields = ('name', 'location', 'desc', 'hrs_opening', 'hrs_closing', 'price', 'child_price')
+
+
+class ReviewForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ('rating', 'comment')

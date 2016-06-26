@@ -1,6 +1,7 @@
 {% extends 'buffetinfo/base.html' %}
 
 {% block content %}
+<h2> Buffet Drafts </h2>
     {% for buffet in buffets %}
         <div class="buffet">
             <p class="date">created: {{ buffet.created_date|date:'d-m-Y' }}</p>

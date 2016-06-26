@@ -2,19 +2,50 @@
 
 {% block content %}
     <div class="buffet">
-        {% if buffet.published_date %}
-            <div class="date">
-                {{ buffet.published_date }}
-            </div>
-        {% else %}
-        <a class="btn btn-default" href="{% url 'buffetinfo.views.buffet_publish' pk=buffet.pk %}">Publish</a>
-        {% endif %}
+        <div class="date">
+            <p> Created: {{ buffet.created_date }} </p>
+            {% if buffet.published_date %}
+             <p> Published: {{ buffet.published_date }} </p>
+            {% else %}
+                <a class="btn btn-default" href="{% url 'buffetinfo.views.buffet_publish' pk=buffet.pk %}">Publish</a>
+            {% endif %}
+        </div>
 
         {% if user.is_authenticated %}
         	<a class="btn btn-default" href="{% url 'buffet_edit' pk=buffet.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         	<a class="btn btn-default" href="{% url 'buffet_remove' pk=buffet.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
        	{% endif %}
         <h1>{{ buffet.name }}</h1>
+        <h2> Location: {{ buffet.location }} </h2>
+        <h2> Opening hours: {{ buffet.hrs_opening }} </h2>
+        <h2> Closing hours: {{ buffet.hrs_closing }} </h2>
+        <div class = "price">
+            <p> price: {{ buffet.price }} </p>
+            <p> child price: {{ buffet.child_price|default_if_none:"No child price!" }} </p>
+        </div>
         <p>{{  buffet.desc|linebreaksbr }}</p>
     </div>
+
+    <hr>
+    <a class="btn btn-default" href="{% url 'add_review_to_buffet' pk=buffet.pk %}">Add Review</a>
+    {% for review in buffet.reviews.all %}
+        {% if user.is_authenticated or review.approved_review %}
+            <div class="review">
+                <div class="date">
+                    {{ review.created_date }}
+                </div>
+                <strong>{{ review.author }}</strong>
+                {% if not review.approved_review and user.is_authenticated %}
+                    <p> Not approved yet </p>
+                    <a class="btn btn-default" href="{% url 'review_remove' pk=review.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a class="btn btn-default" href="{% url 'review_approve' pk=review.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                {% endif %}
+
+                <p>{{ review.comment|linebreaks }}</p>
+                <p> Rating: {{ review.rating }} </p>
+            </div>
+            {% endif %}
+    {% empty %}
+        <p>No reviews yet :(</p>
+    {% endfor %}
 {% endblock %}
