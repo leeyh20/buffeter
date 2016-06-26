@@ -44,3 +44,7 @@ h1, h2, h3, h4 {
 .buffet h1 a, .buffet h1 a:visited {
     color: #000000;
 }
+
+.review {
+    margin: 20px 0px 20px 20px;
+}

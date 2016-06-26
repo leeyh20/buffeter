@@ -23,6 +23,8 @@
                 	created: {{ buffet.created_date }}
                 </p>
             </div>
+            <br>
+            <a href="{% url 'buffetinfo.views.buffet_detail' pk=buffet.pk %}">Reviews: {{ buffet.approved_reviews.count }}</a>
         </div>
     {% endfor %}
 {% endblock %}

@@ -31,4 +31,34 @@ class Buffet(models.Model):
     def __str__(self):
         return self.name
 
-        #calcuateeaveragerating
+    #calcuateeaveragerating
+    def average_rating(self):
+        all_ratings = map(lambda x: x.rating, self.review_set.all())
+        return np.mean(all_ratings)
+
+    def approved_reviews(self):
+        return self.reviews.filter(approved_review=True)
+
+
+class Review(models.Model):
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    buffet = models.ForeignKey(Buffet, related_name='reviews')
+    #pub_date = models.DateTimeField('date published')
+    created_date = models.DateTimeField(default=timezone.now)
+    user_name = models.CharField(max_length=200)
+    comment = models.TextField()
+    approved_review = models.BooleanField(default=False)
+    rating = models.IntegerField(choices=RATING_CHOICES)
+
+    def approve(self):
+        self.approved_review = True
+        self.save()
+
+    def __str__(self):
+        return self.comment

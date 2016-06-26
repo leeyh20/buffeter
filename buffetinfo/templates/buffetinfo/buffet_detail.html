@@ -17,4 +17,24 @@
         <h1>{{ buffet.name }}</h1>
         <p>{{  buffet.desc|linebreaksbr }}</p>
     </div>
+
+    <hr>
+    <a class="btn btn-default" href="{% url 'add_review_to_buffet' pk=buffet.pk %}">Add Review</a>
+    {% for review in buffet.reviews.all %}
+        {% if user.is_authenticated or review.approved_review %}
+            <div class="review">
+                <div class="date">
+                    {{ review.created_date }}
+                    {% if not comment.approved_comment %}
+                        <a class="btn btn-default" href="{% url 'review_remove' pk=review.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a class="btn btn-default" href="{% url 'review_approve' pk=review.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                    {% endif %}
+                </div>
+                <strong>{{ review.user_name }}</strong>
+                <p>{{ review.comment|linebreaks }}</p>
+            </div>
+            {% endif %}
+    {% empty %}
+        <p>No reviews yet :(</p>
+    {% endfor %}
 {% endblock %}
