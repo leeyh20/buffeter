@@ -4,25 +4,32 @@
 {% block content %}
     {% for buffet in buffets %}
         <div class = "buffet">
-            <h1><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></h1>
-            <h1> Rating: {{ buffet.rating }} </h1>
-            <h2> Location: {{ buffet.location }} </h2>
-            <h2> Opening hours: {{ buffet.hrs_opening }} </h2>
-            <h2> Closing hours: {{ buffet.hrs_closing }} </h2>
-            <div class = "price">
-            	<p> <h2> price: {{ buffet.price }} </h2> 
-            		<br>
-            		child price: {{ buffet.child_price|default_if_none:"No child price!" }}
-            	</p>
-            </div>
-            <p>{{ buffet.desc|linebreaksbr }}</p>
+        	<div class = "container">
+        		<div class = "row">
+        		<div class = "col-sm-6">
+	            <h1><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></h1>
+	            <h2> Location: {{ buffet.location }} </h2>
+	            <h2> Opening hours: {{ buffet.hrs_opening }} </h2>
+	            <h2> Closing hours: {{ buffet.hrs_closing }} </h2>
+	            <div class = "price">
+	            	<p> <h2> price: {{ buffet.price }} </h2> 
+	            		<br>
+	            		child price: {{ buffet.child_price|default_if_none:"No child price!" }}
+	            	</p>
+	            </div>
+	            <p>{{ buffet.desc|linebreaksbr }}</p>
 
-            <div class = "date">
-                <p>published: {{ buffet.published_date }}
-                	<br>
-                	created: {{ buffet.created_date }}
-                </p>
-            </div>
+	            <div class = "date">
+	                <p>published: {{ buffet.published_date }}
+	                	<br>
+	                	created: {{ buffet.created_date }}
+	                </p>
+	            </div>
+	            </div>
+	            <div class = "col-sm-6">
+	            	<h1> Rating: {{ buffet.rating }} </h1>
+	            </div>
+	        </div>
         </div>
     {% endfor %}
 {% endblock %}
