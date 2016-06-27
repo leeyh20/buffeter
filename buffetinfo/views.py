@@ -2,17 +2,37 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Buffet, Review
-from .forms import BuffetForm, ReviewForm
+from .forms import BuffetForm, ReviewForm, FilterForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
 def buffet_list(request):
-	buffets = Buffet.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets })
+    #default filter
+    buffets = Buffet.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    if request.method == "POST":
+        form = FilterForm(request.POST)
+        if form.is_valid():
+            location = form.cleaned_data['location']
+            cuisine_type = form.cleaned_data['cuisine_type']
+            if location != '': 
+                buffets = buffets.filter(location=location)
+                #return redirect('/filter/location/' + location + '/')
+            if cuisine_type != '':
+                buffets = buffets.filter(cuisine_type=cuisine_type)
+                #return redirect('/filter/cuisine_type/' + cuisine_type + '/')
+                #cannot filter price because price is char field now. Need to convert to float....
+    else:
+        form = FilterForm()
+        
+    return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets, 'form': form })
 
-def buffet_filter_location(request, pk):
-    buffets = Buffet.objects.filter(location=pk)
-    return render(request, 'buffetinfo/buffet_list.html', { 'buffets' : buffets })
+#def buffet_filter_location(request, pk):
+#    buffets = Buffet.objects.filter(location=pk)
+#    return render(request, 'buffetinfo/buffet_list.html', { 'buffets' : buffets })
+
+#def buffet_filter_cuisine_type(request, pk):
+#    buffets = Buffet.objects.filter(cuisine_type=pk)
+#    return render(request, 'buffetinfo/buffet_list.html', { 'buffets' : buffets })
 
 def buffet_detail(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
