@@ -1,4 +1,4 @@
-"# buffeter"
+﻿"# buffeter"
 
 <h1>MILESTONE 1</h1>
 
@@ -90,7 +90,7 @@
 
 <h2>Features For The Next Sprint</h2>
 
-<p>As mentioned in Milestone 1, we will be working on Features 4, 5 and other fixes that the peer teams suggest in sprint 3.</p>
+<p>As mentioned in Milestone 1, we will be working on Features 4, 5, 6 and other fixes that the peer teams suggest in sprint 3. We would improve on features 1 to 3 too, by allowing the uploading of photos, having a better user profile and better user interface suited for mobile. Users should have points and a profile page. We should also make it easier to add buffets, with locations linked to Google Map (extensions!) </p>
 
 <p>Here are the user stories: </p>
 
@@ -100,7 +100,11 @@ As a user who wants to tell a friend about the buffet restaurant, I need to be a
 
 <p><b>User Story #5</b>
 <br>
-As a user who wants to manage the contents, I need to be able to manage the reviews and suggestions submitted by the public. To do this, the web app should have an admin’s panel.</p>
+As a user who wants to manage the contents (moderator status), I need to be able to manage the reviews and suggestions submitted by the public. To do this, the web app should have an admin’s panel.</p>
+
+<p><b>User Story #6</b>
+<br>
+As a user who wants to manage my account, I need to be able to edit my user profile and see my points. To do this, the web app should have an editable profile page.</p>
 
 
 
