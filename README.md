@@ -21,7 +21,7 @@
   <li>Provide ways for user to contribute constructive reviews (with pictures) and reward them as an incentive</li>
 </ol>
 
-<h2>Specifications</h2>>
+<h2>Specifications</h2>
 <p>We aim to build a web-app. We are considering technologies such as AngularJS, PHP / MySql for database, and Parse to work along with it.</p>
 
 <h2>How is it Useful</h2>
