@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'buffetinfo',
     'datetimewidget',
+    'useradmin'
 ]
 
 MIDDLEWARE_CLASSES = [
