@@ -8,11 +8,15 @@ from django.contrib.auth.decorators import login_required
 
 def buffet_list(request):
 	buffets = Buffet.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-	return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets})
+	return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets })
+
+def buffet_filter_location(request, pk):
+    buffets = Buffet.objects.filter(location=pk)
+    return render(request, 'buffetinfo/buffet_list.html', { 'buffets' : buffets })
 
 def buffet_detail(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
-    return render(request, 'buffetinfo/buffet_detail.html', {'buffet': buffet})
+    return render(request, 'buffetinfo/buffet_detail.html', {'buffet': buffet })
 
 @login_required
 def buffet_new(request):
