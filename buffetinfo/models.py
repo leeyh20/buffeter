@@ -9,16 +9,51 @@ LOCATION_CHOICES = (
     ('Bukit Batok', 'Bukit Batok'),
     ('Bukit Gombak', 'Bukit Gombak'),
     ('Choa Chu Kang', 'Choa Chu Kang'),
+    ('Yew Tee', 'Yew Tee'),
+    ('Kranji', 'Kranji'),
+    ('Marsiling', 'Marsiling'),
+    ('Woodlands', 'Woodlands'),
+    ('Admiralty', 'Admiralty'),
+    ('Sembawang', 'Sembawang'),
+    ('Yishun', 'Yishun'),
+    ('Khatib', 'Khatib'),
+    ('Yio Chu Kang', 'Yio Chu Kang'),
+    ('Ang Mo Kio', 'Ang Mo Kio'),
+    ('Bishan', 'Bishan'),
+    ('Braddell', 'Braddell'),
+    ('Toa Payoh', 'Toa Payoh'),
+    ('Novena', 'Novena'),
+    ('Newton', 'Newton'),
+    ('Orchard', 'Orchard'),
+    ('Somerset', 'Somerset'),
+    ('Dhoby Ghaut', 'Dhoby Ghaut'),
+    ('City Hall', 'City Hall'),
+    ('Raffles Place', 'Raffles Place'),
+    ('Marina Bay', 'Marina Bay'),
+    ('Marina South Pier', 'Marina South Pier'),
+
 )
+
+CUISINE_CHOICES = (
+    ('International', 'International'),
+    ('Korean BBQ', 'Koran BBQ'),
+    ('Japanese Steamboat', 'Japanese Steamboat'),
+    ('Vegeterian', 'Vegeterian'),
+
+    )
+
 class Buffet(models.Model):
     author = models.ForeignKey('auth.User')
     name = models.CharField(max_length=200)
     location = models.CharField(max_length=200, choices=LOCATION_CHOICES)
+    cuisine_type = models.CharField(max_length=200, choices=CUISINE_CHOICES)
     desc = models.TextField()
     hrs_opening = models.TimeField(help_text="Please use the following format: <em>HH:MM:SS</em>. 24-hour format")
     hrs_closing = models.TimeField(help_text="Please use the following format: <em>HH:MM:SS</em>. 24-hour format.")
-    price = models.FloatField(help_text="in S$")
-    child_price = models.FloatField(default="", blank=True, null=True)
+    phone_number = models.CharField(max_length=100)
+    address = models.CharField(max_length=100, null=True)
+    price = models.CharField(max_length=100, help_text="in S$")
+    child_price = models.CharField(max_length=100, default="", blank=True, null=True)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
@@ -35,7 +70,7 @@ class Buffet(models.Model):
     def average_rating(self):
         all_ratings = map(lambda x: x.rating, self.reviews.filter(approved_review=True))
         if (self.reviews.count() > 0):
-            return statistics.mean(all_ratings)
+            return '{:03.2f}'.format(statistics.mean(all_ratings))
         return 0.0
 
     def approved_reviews(self):

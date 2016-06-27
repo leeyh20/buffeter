@@ -16,12 +16,15 @@
         	<a class="btn btn-default" href="{% url 'buffet_remove' pk=buffet.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
        	{% endif %}
         <h1>{{ buffet.name }}</h1>
-        <h2> Location: {{ buffet.location }} </h2>
-        <h2> Opening hours: {{ buffet.hrs_opening }} </h2>
-        <h2> Closing hours: {{ buffet.hrs_closing }} </h2>
+        <h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>
+        <h3> Location: {{ buffet.location }} </h3>
+        <p> Address: {{ buffet.address }} </p>
+        <h3> Opening hours: {{ buffet.hrs_opening }} </h3>
+        <h3> Closing hours: {{ buffet.hrs_closing }} </h3>
+        <h3> Contact Number: {{ buffet.phone_number }} </h3>
         <div class = "price">
-            <p> price: {{ buffet.price }} </p>
-            <p> child price: {{ buffet.child_price|default_if_none:"No child price!" }} </p>
+            <p> Adult price range: {{ buffet.price }} </p>
+            <p> Child price range: {{ buffet.child_price|default_if_none:"No child price!" }} </p>
         </div>
         <p>{{  buffet.desc|linebreaksbr }}</p>
     </div>
