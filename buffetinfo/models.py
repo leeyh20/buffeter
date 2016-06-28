@@ -36,7 +36,7 @@ LOCATION_CHOICES = (
 
 CUISINE_CHOICES = (
     ('International', 'International'),
-    ('Korean BBQ', 'Korean BBQ'),
+    ('Korean BBQ', 'Koran BBQ'),
     ('Japanese Steamboat', 'Japanese Steamboat'),
     ('Vegeterian', 'Vegeterian'),
 
@@ -50,10 +50,29 @@ class Buffet(models.Model):
     desc = models.TextField()
     hrs_opening = models.TimeField(help_text="Please use the following format: <em>HH:MM:SS</em>. 24-hour format")
     hrs_closing = models.TimeField(help_text="Please use the following format: <em>HH:MM:SS</em>. 24-hour format.")
-    phone_number = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20, null=True)
     address = models.CharField(max_length=100, null=True)
-    price = models.CharField(max_length=100, help_text="in S$")
-    child_price = models.CharField(max_length=100, default="", blank=True, null=True)
+    
+    weekday_adult_breakfast_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekday_adult_lunch_price = models.FloatField(help_text="in S$", null=True)
+    weekday_adult_hightea_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekday_adult_dinner_price = models.FloatField(help_text="in S$", null=True)
+
+    weekday_child_breakfast_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekday_child_lunch_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekday_child_hightea_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekday_child_dinner_price = models.FloatField(help_text="in S$", blank=True, null=True)
+
+    weekend_adult_breakfast_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekend_adult_lunch_price = models.FloatField(help_text="in S$", null=True)
+    weekend_adult_hightea_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekend_adult_dinner_price = models.FloatField(help_text="in S$", null=True)
+
+    weekend_child_breakfast_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekend_child_lunch_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekend_child_hightea_price = models.FloatField(help_text="in S$", blank=True, null=True)
+    weekend_child_dinner_price = models.FloatField(help_text="in S$", blank=True, null=True)
+
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
