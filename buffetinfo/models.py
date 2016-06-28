@@ -36,7 +36,7 @@ LOCATION_CHOICES = (
 
 CUISINE_CHOICES = (
     ('International', 'International'),
-    ('Korean BBQ', 'Koran BBQ'),
+    ('Korean BBQ', 'Korean BBQ'),
     ('Japanese Steamboat', 'Japanese Steamboat'),
     ('Vegeterian', 'Vegeterian'),
 
