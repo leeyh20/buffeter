@@ -65,7 +65,7 @@
 
 <h1>MILESTONE 2</h1>
 
-<h4>Please click <a href="http://buffeterapp.pythonanywhere.com/">here</a> to view our web app prototype</h4>
+<h4>Please click <a href="http://buffeterapp.pythonanywhere.com/" target="_blank">here</a> to view our web app prototype</h4>
 
 <h2>Acceptance Testing</h2>
 
@@ -75,7 +75,7 @@
   <li>User Story #1 - User looking for buffet restaurants</li>
   <ol>
     <li>Search for buffet</li>
-    <li>Filter search results by price, location, type of cuisine, promotions available</li>
+    <li>Filter search results by location, type of cuisine</li>
   </ol>
   <li>User Story #2 - User reviews buffet restaurant</li>
   <ol>
