@@ -32,15 +32,16 @@ class BuffetForm(forms.ModelForm):
                   'weekday_child_breakfast_price', 
                   'weekday_child_lunch_price', 
                   'weekday_child_hightea_price', 
-                  'weekday_child_dinner_price', 
-                  'weekend_adult_breakfast_price', 
-                  'weekend_adult_lunch_price',
-                  'weekend_adult_hightea_price', 
-                  'weekend_adult_dinner_price', 
-                  'weekend_child_breakfast_price', 
-                  'weekend_child_lunch_price', 
-                  'weekend_child_hightea_price', 
-                  'weekend_child_dinner_price')
+                  'weekday_child_dinner_price',)
+        
+    
+    def __init__(self, *args, **kwargs):
+          super().__init__(*args, **kwargs)
+          for field in self.Meta.fields:
+            self.fields[field].widget.attrs.update({
+              'class': 'form-control',
+              'placeholder': self.fields[field].label
+            })
 
 
 class ReviewForm(forms.ModelForm):

@@ -3,7 +3,9 @@
 {% block content %}
     <h1>Submit a new buffet place!</h1>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+    	<div class="form-group">
+        	{{ form.as_p }}
+        </div>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}
