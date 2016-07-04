@@ -38,7 +38,7 @@ class BuffetForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
           super().__init__(*args, **kwargs)
           for field in self.Meta.fields:
-            self.fields[field].widget.attrs.update({
+            self.fields[field].widget.attrs.update({ 
               'class': 'form-control',
               'placeholder': self.fields[field].label
             })
