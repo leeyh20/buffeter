@@ -93,13 +93,14 @@
                 <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
                 <a href="{% url 'account_new' %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
             {% endif %}
-
-            <h1><a href="/">Buffeter</a></h1>
+            <div class="center-menu">
+            <a href="/">Buffeter</a>
+            </div>
         </div>
 
         <div class="content">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-11">
                 {% block content %}
                 {% endblock %}
                 </div>

@@ -6,18 +6,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
         <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/buffetinfo.css' %}">
         {{ form.media }}
     </head>
     <body>
         <div class="page-header">
-            <h1><a href="/">Buffeter</a></h1>
+            <div class="center-menu">
+                <a href="/">Buffeter</a>
+            </div>
         </div>
 
-        <div class="content container">
+         <div class="content">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-11">
                 {% block content %}
                 {% endblock %}
                 </div>
