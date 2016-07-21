@@ -141,3 +141,7 @@ class Review(models.Model):
 
     def __str__(self):
         return self.comment
+
+class Images(models.Model):
+    review = models.ForeignKey(Review)
+    image = models.ImageField(upload_to = 'reviews/pics', blank = True, null = True)

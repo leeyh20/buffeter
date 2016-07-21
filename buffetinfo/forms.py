@@ -1,17 +1,11 @@
 from django import forms
 
-from .models import Buffet, Review, LOCATION_CHOICES, CUISINE_CHOICES
-
-from datetimewidget.widgets import TimeWidget
+from .models import Buffet, Review, Images, LOCATION_CHOICES, CUISINE_CHOICES
 
 class BuffetForm(forms.ModelForm):
 
     class Meta:
         model = Buffet
-        widgets = {
-            'hrs_opening': TimeWidget(usel10n = True, bootstrap_version=3),
-            'hrs_closing': TimeWidget(usel10n = True, bootstrap_version=3),
-        }
         labels = {
             'name': "Name Of Place",
             'desc': "Description",
@@ -40,7 +34,8 @@ class BuffetForm(forms.ModelForm):
                   'weekend_child_breakfast_price', 
                   'weekend_child_lunch_price', 
                   'weekend_child_hightea_price', 
-                  'weekend_child_dinner_price')
+                  'weekend_child_dinner_price',
+                  )
         
     
     def __init__(self, *args, **kwargs):
@@ -58,6 +53,11 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ('rating', 'comment')
 
+class ImageForm(forms.ModelForm):
+  image = forms.ImageField(label='Image')
+  class Meta:
+    model = Images
+    fields = ('image',)
 
 class FilterForm(forms.Form):
     location = forms.CharField(required=False, label='Location (MRT Station)', widget=forms.Select(choices=LOCATION_CHOICES, attrs={'onChange': 'this.form.submit();'}))

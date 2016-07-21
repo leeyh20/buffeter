@@ -1,10 +1,12 @@
 
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import Buffet, Review
-from .forms import BuffetForm, ReviewForm, FilterForm
+from .models import Buffet, Review, Images
+from django.forms import modelformset_factory
+from .forms import BuffetForm, ReviewForm, FilterForm, ImageForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.template import RequestContext
 
 def buffet_list(request):
     #default filter
@@ -110,17 +112,32 @@ def buffet_remove(request, pk):
 @login_required
 def add_review_to_buffet(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
+    ImageFormSet = modelformset_factory(Images, form = ImageForm, extra = 3)
     if request.method == "POST":
         form = ReviewForm(request.POST)
-        if form.is_valid():
+        formset = ImageFormSet(request.POST, request.FILES, queryset= Images.objects.none())
+        
+        if form.is_valid() and formset.is_valid():
             review = form.save(commit=False)
             review.author = request.user
             review.buffet = buffet
             review.save()
+
+            for imageForm in formset.cleaned_data:
+                #cleaned_data
+                image = imageForm.get("image", "")
+                if (image):
+                    photo = Images(review=review, image= image)
+                    photo.save()
+                else:
+                    photo = Images(review=review, image= None)
+                    photo.save()
             return redirect('buffetinfo.views.buffet_detail', pk=buffet.pk)
-    else:
+
+    else:        
         form = ReviewForm()
-    return render(request, 'buffetinfo/add_review_to_buffet.html', {'form': form})
+        formset = ImageFormSet(queryset= Images.objects.none())
+    return render(request, 'buffetinfo/add_review_to_buffet.html', {'form': form, 'formset': formset}, context_instance = RequestContext(request))
 
 @login_required
 def review_approve(request, pk):

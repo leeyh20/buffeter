@@ -2,8 +2,13 @@
 
 {% block content %}
     <h1>New Review</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+    <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}
+
+        {{ formset.management_form }}
+        {% for imageForm in formset %}
+        	{{ imageForm }}
+        {% endfor %}
         <button type="submit" class="save btn btn-default">Submit</button>
     </form>
 {% endblock %}
