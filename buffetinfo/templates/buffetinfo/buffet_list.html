@@ -2,12 +2,8 @@
 {% extends 'buffetinfo/base.html' %}
 
 {% block content %}
-	<h1>Filter: </h1>
-	<form method="POST" class="post-form">{%csrf_token %}
-		{{ form.as_p}}
-		<!-- <button type="submit" class="save btn" btn-default> Filter now!</button> -->
-	</form>
-	
+
+	<h2> Buffets </h2>
     {% for buffet in buffets %}
         <div class = "buffet">
         		<div class = "row">

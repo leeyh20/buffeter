@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models import Q
+import operator
+import functools
 
 import statistics
 
@@ -42,6 +45,25 @@ CUISINE_CHOICES = (
 
     )
 
+class BuffetManager(models.Manager):
+    def get_queryset(self):
+        return super(BuffetManager, self).get_queryset()
+
+    def search(self, search_terms):
+        terms = [term.strip() for term in search_terms.split()]
+        q_objects = []
+
+        for term in terms:
+            q_objects.append(Q(name__icontains=term))
+            q_objects.append(Q(desc__icontains=term))
+
+        # Start with a bare QuerySet
+        qs = self.get_queryset()
+
+        # Use operator's or_ to string together all of your Q objects.
+        return qs.filter(functools.reduce(operator.or_, q_objects))
+
+
 class Buffet(models.Model):
     author = models.ForeignKey('auth.User')
     name = models.CharField(max_length=200)
@@ -78,6 +100,8 @@ class Buffet(models.Model):
     published_date = models.DateTimeField(
             blank=True, null=True)
 
+    objects = BuffetManager()
+
     def publish(self):
         self.published_date = timezone.now()
         self.save()
@@ -94,7 +118,6 @@ class Buffet(models.Model):
 
     def approved_reviews(self):
         return self.reviews.filter(approved_review=True)
-
 
 class Review(models.Model):
     RATING_CHOICES = (

@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^buffet/(?P<pk>\d+)/review/$', views.add_review_to_buffet, name='add_review_to_buffet'),
     url(r'^review/(?P<pk>\d+)/approve/$', views.review_approve, name='review_approve'),
 	url(r'^review/(?P<pk>\d+)/remove/$', views.review_remove, name='review_remove'),
+    url(r'^buffet/search/(?P<pk>.*)/$', views.buffet_search, name='buffet_search'),
     
 ]

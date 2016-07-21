@@ -34,6 +34,27 @@ def buffet_list(request):
 #    buffets = Buffet.objects.filter(cuisine_type=pk)
 #    return render(request, 'buffetinfo/buffet_list.html', { 'buffets' : buffets })
 
+def buffet_search(request, pk):
+    buffets = Buffet.objects.search(pk)
+    buffets = buffets.filter(published_date__lte=timezone.now()).order_by('published_date')
+    if request.method == "POST":
+        form = FilterForm(request.POST)
+        if form.is_valid():
+            location = form.cleaned_data['location']
+            cuisine_type = form.cleaned_data['cuisine_type']
+            if location != '': 
+                buffets = buffets.filter(location=location)
+                #return redirect('/filter/location/' + location + '/')
+            if cuisine_type != '':
+                buffets = buffets.filter(cuisine_type=cuisine_type)
+                #return redirect('/filter/cuisine_type/' + cuisine_type + '/')
+                #cannot filter price because price is char field now. Need to convert to float....
+    else:
+        form = FilterForm()
+
+    
+    return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets, 'form': form })
+
 def buffet_detail(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
     return render(request, 'buffetinfo/buffet_detail.html', {'buffet': buffet })

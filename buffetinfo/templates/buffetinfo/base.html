@@ -6,72 +6,85 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet" type="text/css"/>
         <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+        <link href =" {% static 'bootstrap/css/jasny-bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+        <script src="{% static 'bootstrap/js/jasny-bootstrap.js' %}"></script>
         <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/buffetinfo.css' %}">
         {{ form.media }}
+
+        <script>
+        function process_search() {
+            var url = "/buffet/search/" + document.getElementById("url").value;
+            location.href = url;
+            return false;
+        }
+        </script>
     </head>
     <body>
-<!--
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #e3f2fd;">
+
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #5D8AA8;">
 <div class="container">
 <div class="row">
-   Brand and toggle get grouped for better mobile display
+   <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header col-sm-1">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-top-menu-collapse">
-            <i class="glyphicon glyphicon-list"></i>
-        </button>
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-top-member-collapse">
-            <i class="glyphicon glyphicon-info-sign"></i>
-        </button>
+        
+
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-search-top-collapse">
             <i class="glyphicon glyphicon-search"></i>
         </button>
-        <a class="navbar-brand" href="./">Brand</a>
-    </div>
 
+        {% if user.is_authenticated %}
+
+        <a class="navbar-toggle" href="{% url 'logout' %}" role="button"> <i class="glyphicon glyphicon-log-out"></i></a>
+        <a class="navbar-toggle" href="{% url 'buffet_draft_list' %}" role="button"> <i class="glyphicon glyphicon-edit"></i></a>
+        <a class="navbar-toggle" href="{% url 'buffet_new' %}" role="button"> <i class="glyphicon glyphicon-plus"></i></a>
+        {% else %}
+        <a class="navbar-toggle" href="{% url 'login' %}" role="button"> <i class="glyphicon glyphicon-log-in"></i></a>
+        <a class="navbar-toggle" href="{% url 'account_new' %}" role="button"> <i class="glyphicon glyphicon-user"></i></a>
+        {% endif %}
+
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-top-menu-collapse">
+            <i class="glyphicon glyphicon-list"></i>
+        </button>
+        <a class="navbar-brand" href="/">Buffeter</a>
+    </div>
     <div class="collapse navbar-collapse navbar-top-menu-collapse col-sm-8">
     <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Dev BOX <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="./bbs/board.php?bo_table=linux_tips">Linux</a></li>
-                <li><a href="./bbs/board.php?bo_table=apache_tips">Apache</a></li>
-                <li><a href="./bbs/board.php?bo_table=mysql_tips">MySQL</a></li>
-                <li><a href="./bbs/board.php?bo_table=mariadb_tips">Maria DB</a></li>
-                <li><a href="./bbs/board.php?bo_table=nosql">NoSQL</a></li>
-                <li class="divider"></li>
-                <li><a href="./bbs/board.php?bo_table=css">CSS/bootstrap</a></li>
-                <li><a href="./bbs/board.php?bo_table=php_tips">PHP</a></li>
-                <li><a href="./bbs/board.php?bo_table=jquery_tips">jQuery</a></li>
-                <li><a href="./bbs/board.php?bo_table=javascript_tips">Java Script</a></li>
-                <li><a href="./bbs/board.php?bo_table=ajax">AJAX</a></li>
-                <li class="divider"></li>
-                <li><a href="./bbs/board.php?bo_table=html_tips">HTML</a></li>
-                <li><a href="./bbs/board.php?bo_table=html5_tips">HTML5</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown">App BOX<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a href="./bbs/board.php?bo_table=and_talk">Android</a></li>
-                <li><a href="./bbs/board.php?bo_table=and_tip">Android tip</a></li>
-                <li><a href="./bbs/board.php?bo_table=and_pds">Android codes</a></li>
-            </ul>
-        </li>
 
-        <li><a href="./plugin/attendance/attendance.php">Attendance</a></li>
-        <li class="hidden-sm hidden-md hidden-lg"><a href="./bbs/board.php?bo_table=gnu4_pack_book">g4 manual</a></li>
-        <li class="hidden-sm hidden-md hidden-lg"><a href="./bbs/board.php?bo_table=gnu4_pack_skin">g4 skin</a></li>
-        <li class="hidden-sm hidden-md hidden-lg"><a href="./bbs/board.php?bo_table=gnu4_pack_req">g4 requimenent</a></li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Buffets <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <h2> Sort by: </h2>
+                <h2>Filter by: </h2>
+    <form method="POST" class="post-form">{%csrf_token %}
+        {{ form.as_p}}
+        <!-- <button type="submit" class="save btn" btn-default> Filter now!</button> -->
+    </form>
+                <li class="divider"></li>
+                <li><a href="./bbs/board.php?bo_table=apache_tips">Promotions</a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-top-member-collapse col-sm-8">
+    <ul class="nav navbar-nav">
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'buffet_new' %}"> Add new buffet</a></li>
+        <li><a href="{% url 'buffet_draft_list' %}"> Buffet draft list</a></li>
+        <li> <a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+        <li> <a href="{% url 'login' %}">Login</a></li>
+        <li> <a href="{% url 'account_new' %}">Create new account</a></li>
+        {% endif %}
+        
     </ul>
     </div>
 
     <div class="col-sm-3 pull-right">
-    <form class="navbar-form collapse navbar-collapse navbar-search-top-collapse" role="search" onsubmit="return fsearchbox_submit(this);" method="get">
+    <form class="navbar-form collapse navbar-collapse navbar-search-top-collapse" role="search" onsubmit="return process_search();" method="get">
     <div class="input-group">
-        <input name="sfl" value="wr_subject||wr_content" type="hidden">
-        <input name="sop" value="and" type="hidden">
-        <input name="stx" class="form-control" id="stx" maxlength="20" placeholder="검색어는 2단어까지" value="" type="text">
+        <input name="url" class="form-control"  id="url" maxlength="20" placeholder="Search for buffets" value="" type="text">
         <div class="input-group-btn">
             <button class="btn" type="submit">Search <i class="glyphicon glyphicon-search"></i></button>
         </div>
@@ -83,28 +96,13 @@
 
 </div>
 </nav>
--->
-        <div class="page-header">
-            {% if user.is_authenticated %}
-                <a href="{% url 'buffet_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-                <a href="{% url 'buffet_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-                <p class="top-menu">Hello {{ user.username }}<small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-            {% else %}
-                <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-                <a href="{% url 'account_new' %}" class="top-menu"><span class="glyphicon glyphicon-user"></span></a>
-            {% endif %}
-            <div class="center-menu">
-            <a href="/">Buffeter</a>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-11">
+            {% block content %}
+            {% endblock %}
             </div>
         </div>
-
-        <div class="content">
-            <div class="row">
-                <div class="col-md-11">
-                {% block content %}
-                {% endblock %}
-                </div>
-            </div>
-        </div>
+    </div>
     </body>
 </html>

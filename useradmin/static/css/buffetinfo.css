@@ -15,7 +15,7 @@
 
 .content {
     margin-left: 50px;
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 h1, h2, h3, h4 {
@@ -61,4 +61,17 @@ h1, h2, h3, h4 {
 
 .review {
     margin: 20px 0px 20px 20px;
+}
+
+.navbar-default .navbar-brand {
+  color: #FFF;
+}
+.navbar-default .navbar-text {
+  color: #FFF;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #FFF;
+}
+.dropdown-menu {
+    padding: 3px 20px;
 }
