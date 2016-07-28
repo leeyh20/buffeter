@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Buffet, Review
+from .models import Buffet, Review, Images
 
 class ReviewAdmin(admin.ModelAdmin):
     model = Review
@@ -10,3 +10,5 @@ class ReviewAdmin(admin.ModelAdmin):
 admin.site.register(Buffet)
 
 admin.site.register(Review, ReviewAdmin)
+
+admin.site.register(Images)

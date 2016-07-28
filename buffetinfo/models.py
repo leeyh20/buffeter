@@ -144,4 +144,11 @@ class Review(models.Model):
 
 class Images(models.Model):
     review = models.ForeignKey(Review)
-    image = models.ImageField(upload_to = 'reviews/pics', blank = True, null = True)
+    image = models.ImageField(upload_to = 'reviews' , blank = True, null = True)
+    
+    def __str__(self):
+        return self.image.url
+
+    def delete(self,*args,**kwargs):
+        self.image.delete()
+        super(Images, self).delete(*args,**kwargs)

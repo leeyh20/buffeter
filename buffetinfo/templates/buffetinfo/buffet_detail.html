@@ -91,6 +91,9 @@
     {% for review in buffet.reviews.all %}
         {% if user.is_staff or review.approved_review %}
             <div class="review">
+                {% for image in buffet.reviews.images.all %}
+                 {{ image.image }}
+                 {% endfor %}
                 <div class="date">
                     {{ review.created_date }}
                 </div>

@@ -129,9 +129,7 @@ def add_review_to_buffet(request, pk):
                 if (image):
                     photo = Images(review=review, image= image)
                     photo.save()
-                else:
-                    photo = Images(review=review, image= None)
-                    photo.save()
+
             return redirect('buffetinfo.views.buffet_detail', pk=buffet.pk)
 
     else:        
@@ -148,5 +146,9 @@ def review_approve(request, pk):
 @login_required
 def review_remove(request, pk):
     review = get_object_or_404(Review, pk=pk)
+    images = Images.objects.filter(review=review)
+    for image in images:
+        image.delete()
+
     review.delete()
     return redirect('buffetinfo.views.buffet_detail', pk=review.buffet.pk)
