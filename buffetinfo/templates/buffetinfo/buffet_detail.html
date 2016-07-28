@@ -1,79 +1,86 @@
 {% extends 'buffetinfo/base.html' %}
 
 {% block content %}
-    <div class="buffet">
-        <div class="date">
-            <p> Created: {{ buffet.created_date }} </p>
-            {% if buffet.published_date %}
-             <p> Published: {{ buffet.published_date }} </p>
-            {% else %}
-                <a class="btn btn-default" href="{% url 'buffetinfo.views.buffet_publish' pk=buffet.pk %}">Publish</a>
-            {% endif %}
-        </div>
+    <div class = "buffet">
+        <div class = "row">
+            <div class = "col-sm-9">
+                <div class="date">
+                    <p> Created: {{ buffet.created_date }} </p>
+                    {% if buffet.published_date %}
+                     <p> Published: {{ buffet.published_date }} </p>
+                    {% else %}
+                        <a class="btn btn-default" href="{% url 'buffetinfo.views.buffet_publish' pk=buffet.pk %}">Publish</a>
+                    {% endif %}
+                </div>
 
-        {% if user.is_authenticated %}
-        	<a class="btn btn-default" href="{% url 'buffet_edit' pk=buffet.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        	<a class="btn btn-default" href="{% url 'buffet_remove' pk=buffet.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-       	{% endif %}
-        <h1>{{ buffet.name }}</h1>
-        <h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>
-        <h3> Location: {{ buffet.location }} </h3>
-        <p> Address: {{ buffet.address }} </p>
-        <h3> Opening hours: {{ buffet.hrs_opening }} </h3>
-        <h3> Closing hours: {{ buffet.hrs_closing }} </h3>
-        <h3> Contact Number: {{ buffet.phone_number }}</h3>
-        <div class = "price">
+                {% if user.is_authenticated %}
+                	<a class="btn btn-default" href="{% url 'buffet_edit' pk=buffet.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                	<a class="btn btn-default" href="{% url 'buffet_remove' pk=buffet.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+               	{% endif %}
+                <h1>{{ buffet.name }}</h1>
+                <h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>
+                <h3> Location: {{ buffet.location }} </h3>
+                <h3> Address: {{ buffet.address }} </h3>
+                <h3> Opening hours: {{ buffet.hrs_opening }} </h3>
+                <h3> Closing hours: {{ buffet.hrs_closing }} </h3>
+                <h3> Contact Number: {{ buffet.phone_number }}</h3>
+                <div class = "price">
 
-            <style type="text/css">
-            .tg  {border-collapse:collapse;border-spacing:0;}
-            .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-            .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
-            .tg .tg-yw4l{vertical-align:top}
-            </style>
-            <table class="tg">
-                <tr>
-                    <th class="tg-yw4l" rowspan="2"></th>
-                    <th class="tg-yw4l" colspan="2">Weekday</th>
-                    <th class="tg-yw4l" colspan="2">Weekend</th>
-                </tr>
-                <tr>
-                    <td class="tg-yw4l">Adult</td>
-                    <td class="tg-yw4l">Child</td>
-                    <td class="tg-yw4l">Adult</td>
-                    <td class="tg-yw4l">Child</td>
-                </tr>
-                <tr>
-                    <td class="tg-yw4l">Breakfast</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_adult_breakfast_price|default_if_none:"Not available" }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_child_breakfast_price|default_if_none:"Not available" }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_adult_breakfast_price|default_if_none:"Not available" }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_child_breakfast_price|default_if_none:"Not available" }}</td>
-                </tr>
-                <tr>
-                    <td class="tg-yw4l">Lunch</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_adult_lunch_price }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_child_lunch_price|default_if_none:"Not available" }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_adult_lunch_price }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_child_lunch_price|default_if_none:"Not available" }}</td>
-                </tr>
-                <tr>
-                    <td class="tg-yw4l">High Tea</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_adult_hightea_price|default_if_none:"Not available" }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_child_hightea_price|default_if_none:"Not available" }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_adult_hightea_price|default_if_none:"Not available" }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_child_hightea_price|default_if_none:"Not available" }}</td>
-                </tr>
-                <tr>
-                    <td class="tg-yw4l">Dinner</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_adult_dinner_price }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekday_child_dinner_price|default_if_none:"Not available"  }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_adult_dinner_price }}</td>
-                    <td class="tg-yw4l">{{ buffet.weekend_child_dinner_price|default_if_none:"Not available"  }}</td>
-                </tr>
-            </table>
-            
+                    <style type="text/css">
+                    .tg  {border-collapse:collapse;border-spacing:0;}
+                    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+                    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+                    .tg .tg-yw4l{vertical-align:top}
+                    </style>
+                    <table class="tg">
+                        <tr>
+                            <th class="tg-yw4l" rowspan="2"></th>
+                            <th class="tg-yw4l" colspan="2">Weekday</th>
+                            <th class="tg-yw4l" colspan="2">Weekend</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">Adult</td>
+                            <td class="tg-yw4l">Child</td>
+                            <td class="tg-yw4l">Adult</td>
+                            <td class="tg-yw4l">Child</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">Breakfast</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_adult_breakfast_price|default_if_none:"Not available" }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_child_breakfast_price|default_if_none:"Not available" }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_adult_breakfast_price|default_if_none:"Not available" }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_child_breakfast_price|default_if_none:"Not available" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">Lunch</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_adult_lunch_price }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_child_lunch_price|default_if_none:"Not available" }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_adult_lunch_price }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_child_lunch_price|default_if_none:"Not available" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">High Tea</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_adult_hightea_price|default_if_none:"Not available" }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_child_hightea_price|default_if_none:"Not available" }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_adult_hightea_price|default_if_none:"Not available" }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_child_hightea_price|default_if_none:"Not available" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l">Dinner</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_adult_dinner_price }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekday_child_dinner_price|default_if_none:"Not available"  }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_adult_dinner_price }}</td>
+                            <td class="tg-yw4l">{{ buffet.weekend_child_dinner_price|default_if_none:"Not available"  }}</td>
+                        </tr>
+                    </table>
+                    
+                </div>
+                <p>{{  buffet.desc|linebreaksbr }}</p>
+            </div>
+            <div class = "col-sm-3">
+                <h2> Rating: {{ buffet.average_rating }}/5 </h2>
+            </div>
         </div>
-        <p>{{  buffet.desc|linebreaksbr }}</p>
     </div>
 
     <hr>
