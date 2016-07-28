@@ -77,6 +77,10 @@ h1, h2, h3, h4 {
     padding: 3px 20px;
 }
 
+.dropdown-menu.white {
+    background-color: #FFF !important;
+}
+
 .navbar-toggle {
     color: #FFF
 }

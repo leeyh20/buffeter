@@ -26,7 +26,7 @@ def buffet_list(request):
     else:
         form = FilterForm()
         
-    return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets, 'form': form })
+    return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets, 'form': form , 'search_term': ""})
 
 #def buffet_filter_location(request, pk):
 #    buffets = Buffet.objects.filter(location=pk)
@@ -55,7 +55,7 @@ def buffet_search(request, pk):
         form = FilterForm()
 
     
-    return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets, 'form': form })
+    return render(request, 'buffetinfo/buffet_list.html', {'buffets' : buffets, 'form': form , 'search_term': pk})
 
 def buffet_detail(request, pk):
     buffet = get_object_or_404(Buffet, pk=pk)
@@ -94,7 +94,7 @@ def buffet_edit(request, pk):
 
 @login_required
 def buffet_draft_list(request):
-    buffets = Buffet.objects.filter(published_date__isnull=True).order_by('created_date')
+    buffets = Buffet.objects.filter(published_date__isnull=True, author=request.user).order_by('created_date')
     return render(request, 'buffetinfo/buffet_draft_list.html', {'buffets': buffets})
 
 @login_required

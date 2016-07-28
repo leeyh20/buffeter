@@ -5,25 +5,58 @@
 {% for buffet in buffets %}
 <script type = "text/javascript">
     function detail_{{buffet.pk}}_toggle() {
-        $("#detail_{{buffet.pk}}").toggle();
+        $("#detail_{{buffet.pk}}").slideToggle();
     }
 </script>
 {% endfor %}
 {% endblock %}
 
+{% block navicon %}
+<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-top-menu-collapse">
+    <i class="glyphicon glyphicon-list"></i>
+</button>
+{% endblock %}
+
+{% block nav %}
+<div class="collapse navbar-collapse navbar-top-menu-collapse col-sm-8">
+    <ul class="nav navbar-nav">
+        <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Buffets <b class="caret"></b></a>
+            <ul class="dropdown-menu white">
+                <h2> Sort by: </h2>
+                <h2> Filter by: </h2>
+    <form method="POST" class="post-form">{%csrf_token %}
+        {{ form.as_p}}
+        <!-- <button type="submit" class="save btn" btn-default> Filter now!</button> -->
+    </form>
+                <li class="divider"></li>
+                <li><a href="./bbs/board.php?bo_table=apache_tips">Promotions</a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+{% endblock %}
+
 {% block content %}
 
+	{% if user.is_staff %}
+    <h1> Welcome, staff! </h1>
+    {% endif %}
+    
+    {% if search_term != "" %}
+        <h2> Searching for: {{ search_term }} </h2>
+    {% else %}
+        <h2> Buffets </h2>
+    {% endif %}
 
-   
-	<h2> Buffets </h2>
     {% for buffet in buffets %}
 
         <div class = "buffet" onclick = "detail_{{buffet.pk}}_toggle();">
         		<div class = "row">
 		    		<div class = "col-sm-9">
                         <div class = "date">
-                            <p>published: {{ buffet.published_date }} </p>
-                            <p> created: {{ buffet.created_date }} </p>
+                            <p>published: {{ buffet.published_date }} <br>
+                            created: {{ buffet.created_date }} </p>
                         </div>
 		            <h1><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></h1>
 		            <h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>

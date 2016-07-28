@@ -46,29 +46,15 @@
         <a class="navbar-toggle" href="{% url 'account_new' %}" role="button"> <i class="glyphicon glyphicon-user"></i></a>
         {% endif %}
 
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-top-menu-collapse">
-            <i class="glyphicon glyphicon-list"></i>
-        </button>
+        {% block navicon %}
+        {% endblock %}
+        
         <a class="navbar-brand" href="/">Buffeter</a>
     </div>
-    <div class="collapse navbar-collapse navbar-top-menu-collapse col-sm-8">
-    <ul class="nav navbar-nav">
 
-        <li class="dropdown">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Buffets <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <h2> Sort by: </h2>
-                <h2>Filter by: </h2>
-    <form method="POST" class="post-form">{%csrf_token %}
-        {{ form.as_p}}
-        <!-- <button type="submit" class="save btn" btn-default> Filter now!</button> -->
-    </form>
-                <li class="divider"></li>
-                <li><a href="./bbs/board.php?bo_table=apache_tips">Promotions</a></li>
-            </ul>
-        </li>
-    </ul>
-    </div>
+
+    {% block nav %}
+    {% endblock %}
 
     <div class="collapse navbar-collapse navbar-top-member-collapse col-sm-8">
     <ul class="nav navbar-nav">
