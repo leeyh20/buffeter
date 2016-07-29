@@ -153,3 +153,6 @@ def review_remove(request, pk):
 
     review.delete()
     return redirect('buffetinfo.views.buffet_detail', pk=review.buffet.pk)
+
+def buffet_promotions(request):
+    return render(request, 'buffetinfo/buffet_promotions.html')

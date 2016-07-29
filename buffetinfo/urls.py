@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^review/(?P<pk>\d+)/approve/$', views.review_approve, name='review_approve'),
 	url(r'^review/(?P<pk>\d+)/remove/$', views.review_remove, name='review_remove'),
     url(r'^buffet/search/(?P<pk>.*)/$', views.buffet_search, name='buffet_search'),
+    url(r'^buffet/promotions', views.buffet_promotions, name='buffet_promotions'),
     
 ]
