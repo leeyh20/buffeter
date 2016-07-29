@@ -147,8 +147,12 @@ class Images(models.Model):
     image = models.ImageField(upload_to = 'reviews' , blank = True, null = True)
     
     def __str__(self):
-        return self.image.url
+        if (image != null):
+            return self.image.url
+        else:
+            return ""
 
     def delete(self,*args,**kwargs):
-        self.image.delete()
+        if (image != null):
+            self.image.delete()
         super(Images, self).delete(*args,**kwargs)

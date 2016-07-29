@@ -102,8 +102,12 @@
                 </div>
 
                 {% for image in review.images.all %}
-                 <a href = "{{ image.image.url }}"> <img src="{{ image.image.url }}" height="200"> </a>
-                 {% endfor %}
+                
+                {% if image %}
+                    <a href = "{{ image.image.url }}"> <img src="{{ image.image.url }}" height="200"> </a>
+                {% endif %}
+
+                {% endfor %}
 
                 <p><strong>{{ review.author }}</strong></p>
                 
