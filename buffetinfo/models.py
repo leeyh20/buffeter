@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.dispatch import receiver
 from django.db.models import Q
 import operator
 import functools
@@ -144,15 +145,25 @@ class Review(models.Model):
 
 class Images(models.Model):
     review = models.ForeignKey(Review, related_name = 'images')
-    image = models.ImageField(upload_to = 'reviews' , blank = True, null = True)
+    image = models.ImageField(upload_to = 'reviews')
     
     def __str__(self):
-        if (image != null):
+        if (self.image):
             return self.image.url
         else:
             return ""
 
     def delete(self,*args,**kwargs):
-        if (image != null):
+        if (self.image):
             self.image.delete()
         super(Images, self).delete(*args,**kwargs)
+
+
+@receiver(models.signals.post_delete, sender=Images)
+def delete_ImagesModel(sender, instance, **kwargs):
+    """
+    Ensures that images are deleted even if queryset calls delete
+    """
+    if (instance):
+        if(instance.image):
+            instance.image.delete(False)

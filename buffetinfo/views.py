@@ -148,7 +148,8 @@ def review_remove(request, pk):
     review = get_object_or_404(Review, pk=pk)
     images = Images.objects.filter(review=review)
     for image in images:
-        image.delete()
+        if (image):
+            image.delete()
 
     review.delete()
     return redirect('buffetinfo.views.buffet_detail', pk=review.buffet.pk)

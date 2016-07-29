@@ -103,7 +103,7 @@
 
                 {% for image in review.images.all %}
                 
-                {% if image %}
+                {% if image.image %}
                     <a href = "{{ image.image.url }}"> <img src="{{ image.image.url }}" height="200"> </a>
                 {% endif %}
 
