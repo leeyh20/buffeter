@@ -91,18 +91,22 @@
     {% for review in buffet.reviews.all %}
         {% if user.is_staff or review.approved_review %}
             <div class="review">
-                {% for image in buffet.reviews.images.all %}
-                 {{ image.image }}
-                 {% endfor %}
-                <div class="date">
-                    {{ review.created_date }}
-                </div>
-                <strong>{{ review.author }}</strong>
                 {% if not review.approved_review and user.is_staff %}
                     <p> Not approved yet </p>
                     <a class="btn btn-default" href="{% url 'review_remove' pk=review.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                     <a class="btn btn-default" href="{% url 'review_approve' pk=review.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
                 {% endif %}
+
+                <div class="date">
+                    {{ review.created_date }}
+                </div>
+
+                {% for image in review.images.all %}
+                 <a href = "{{ image.image.url }}"> <img src="{{ image.image.url }}" height="200"> </a>
+                 {% endfor %}
+
+                <p><strong>{{ review.author }}</strong></p>
+                
 
                 <p>{{ review.comment|linebreaks }}</p>
                 <p> Rating: {{ review.rating }} </p>

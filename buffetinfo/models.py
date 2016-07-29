@@ -143,7 +143,7 @@ class Review(models.Model):
         return self.comment
 
 class Images(models.Model):
-    review = models.ForeignKey(Review)
+    review = models.ForeignKey(Review, related_name = 'images')
     image = models.ImageField(upload_to = 'reviews' , blank = True, null = True)
     
     def __str__(self):
