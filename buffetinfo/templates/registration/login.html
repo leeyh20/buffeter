@@ -1,8 +1,10 @@
-{% extends "useradmin/base.html" %}
+{% extends "buffetinfo/base.html" %}
 
 {% block content %}
 
-<h2>Login</h2>
+<div id = "loginheading">
+	<p>Login</p>
+</div>
 
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
@@ -10,6 +12,7 @@
 
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
+<div id = "loginlabels">
 <table>
 <tr>
     <td>{{ form.username.label_tag }}</td>
@@ -20,8 +23,9 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
+</div>
 
-<input type="submit" value="login" />
+<input type="submit" value="Login" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 

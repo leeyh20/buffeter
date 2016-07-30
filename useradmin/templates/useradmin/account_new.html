@@ -1,9 +1,30 @@
-{% extends 'useradmin/base.html' %}
+{% extends "buffetinfo/base.html" %}
 
 {% block content %}
-    <h2>Create a new user account</h2>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+
+	<div id = "createheading">
+    	<p>Create a New User Account</p>
+    </div>
+    <form method="POST" class="post-form">
+    <div id = "createlabels">
+    {% csrf_token %}
+    <table>
+    	<tr>
+    		<td>{{ form.user_name.label_tag }}</td>
+    		<td>{{ form.user_name }}</td>
+    	</tr>
+    	<tr>
+    		<td>{{ form.email.label_tag }}</td>
+    		<td>{{ form.email }}</td>
+		</tr>
+		<tr>
+    		<td>{{ form.password.label_tag }}</td>
+    		<td>{{ form.password }}</td>
+		</tr>
+        	
+    </table>
+
+    </div>
+    <input type="submit" value="Create" />
     </form>
 {% endblock %}

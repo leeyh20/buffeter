@@ -9,6 +9,11 @@
         <link href =" {% static 'bootstrap/css/jasny-bootstrap.css' %}" rel="stylesheet" type="text/css"/>
         <script src="{% static 'bootstrap/js/jasny-bootstrap.js' %}"></script>
         <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+        
+        <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Fjalla+One|Josefin+Slab|Lalezar|Luckiest+Guy|Oleo+Script|Oswald|Passion+One|Shrikhand|Sigmar+One" rel="stylesheet">
+
         <link rel="stylesheet" href="{% static 'css/buffetinfo.css' %}">
         {{ form.media }}
 
@@ -25,7 +30,7 @@
     </head>
     <body>
 
-<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #5D8AA8;">
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #BF5B2F;">
 <div class="container">
 <div class="row">
    <!-- Brand and toggle get grouped for better mobile display -->
@@ -41,32 +46,38 @@
         <a class="navbar-toggle" href="{% url 'logout' %}" role="button"> <i class="glyphicon glyphicon-log-out"></i></a>
         <a class="navbar-toggle" href="{% url 'buffet_draft_list' %}" role="button"> <i class="glyphicon glyphicon-edit"></i></a>
         <a class="navbar-toggle" href="{% url 'buffet_new' %}" role="button"> <i class="glyphicon glyphicon-plus"></i></a>
+        <a class="navbar-toggle" href="{% url 'buffet_promotions' %}" role="button"> <i class="glyphicon glyphicon-tag"></i></a>
         {% else %}
         <a class="navbar-toggle" href="{% url 'login' %}" role="button"> <i class="glyphicon glyphicon-log-in"></i></a>
         <a class="navbar-toggle" href="{% url 'account_new' %}" role="button"> <i class="glyphicon glyphicon-user"></i></a>
+        <a class="navbar-toggle" href="{% url 'buffet_promotions' %}" role="button"> <i class="glyphicon glyphicon-tag"></i></a>
         {% endif %}
 
         {% block navicon %}
         {% endblock %}
         
-        <a class="navbar-brand" href="/">Buffeter</a>
+        <div id = "brandlogo">
+            <a class="navbar-brand" href="/">Buffeter</a>
+        </div>
     </div>
 
 
     {% block nav %}
     {% endblock %}
 
-    
+
 
     <div class="collapse navbar-collapse navbar-top-member-collapse col-sm-8">
     <ul class="nav navbar-nav">
         {% if user.is_authenticated %}
-        <li><a href="{% url 'buffet_new' %}"> Add new buffet</a></li>
-        <li><a href="{% url 'buffet_draft_list' %}"> Buffet draft list</a></li>
+        <li><a href="{% url 'buffet_promotions' %}"> Promotions</a></li>
+        <li><a href="{% url 'buffet_new' %}"> Add buffet</a></li>
+        <li><a href="{% url 'buffet_draft_list' %}"> Drafts</a></li>
         <li> <a href="{% url 'logout' %}">Logout</a></li>
         {% else %}
+        <li><a href="{% url 'buffet_promotions' %}"> Promotions</a></li>
         <li> <a href="{% url 'login' %}">Login</a></li>
-        <li> <a href="{% url 'account_new' %}">Create new account</a></li>
+        <li> <a href="{% url 'account_new' %}">Create Account</a></li>
         {% endif %}
         
     </ul>

@@ -1,4 +1,3 @@
-
 {% extends 'buffetinfo/base.html' %}
 
 {% block head %}
@@ -40,13 +39,17 @@
 {% block content %}
 
 	{% if user.is_staff %}
-    <h1> Welcome, staff! </h1>
+	<div id = "welcome">
+    	<p> Welcome, staff! </p>
+    </div>
     {% endif %}
     
     {% if search_term != "" %}
         <h2> Searching for: {{ search_term }} </h2>
     {% else %}
-        <h2> Buffets </h2>
+    	<div id = "buffetlist">
+        	<p> Buffets </p>
+        </div>
     {% endif %}
 
     {% for buffet in buffets %}
@@ -54,18 +57,23 @@
         <div class = "buffet" onclick = "detail_{{buffet.pk}}_toggle();">
         		<div class = "row">
 		    		<div class = "col-sm-9">
-                        <div class = "date">
-                            <p>published: {{ buffet.published_date }} <br>
-                            created: {{ buffet.created_date }} </p>
-                        </div>
-		            <h1><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></h1>
-		            <h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>
-		            <h3> Location: {{ buffet.location }} </h3>
-                    <h3> Address: {{ buffet.address }} </h3>
-		            <h3> Opening hours: {{ buffet.hrs_opening }} </h3>
-		            <h3> Closing hours: {{ buffet.hrs_closing }} </h3>
-		            <h3> Contact Number: {{ buffet.phone_number }} </h3>
-
+                    <div id = "buffetname">    
+		            	<p><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></p>
+		            </div>
+		            <!--<h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>-->
+		            <div id = "buffetlocation">
+		            	<p> Location: {{ buffet.location }} </p>
+		            </div>
+		            <div id = "buffetaddress">
+                    	<p> Address: {{ buffet.address }} </p>
+                    </div>
+		            <!--<h3> Opening hours: {{ buffet.hrs_opening }} </h3>
+		            <h3> Closing hours: {{ buffet.hrs_closing }} </h3>-->
+		            <div id = "buffetcontact">
+		            	<p> Contact Number: {{ buffet.phone_number }} </p>
+		            </div>
+		            
+					
                     <div id = "detail_{{buffet.pk}}" style="display:none">
 		            <div class = "price">
                     <style type="text/css">
@@ -74,7 +82,13 @@
                     .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
                     .tg .tg-yw4l{vertical-align:top}
                     </style>
-                    <table class="tg">
+                    <div id = "morebuffetinfo">
+                    <p>Cuisine Type: {{ buffet.cuisine_type}}</p>
+                    <p> Opening hours: {{ buffet.hrs_opening }} to {{buffet.hrs_closing}} </p>
+		            
+		            </div>
+		            <div id = "pricetable">
+                    	<table class="table table-striped">
                         <tr>
                             <th class="tg-yw4l" rowspan="2"></th>
                             <th class="tg-yw4l" colspan="2">Weekday</th>
@@ -114,18 +128,31 @@
                             <td class="tg-yw4l">{{ buffet.weekend_adult_dinner_price }}</td>
                             <td class="tg-yw4l">{{ buffet.weekend_child_dinner_price|default_if_none:"Not available"  }}</td>
                         </tr>
-                    </table>
+                    	</table>
+                    </div>
                     
                 </div>
-                <p>{{  buffet.desc|linebreaksbr }}</p>
+                <div id = "buffetdescription">
+                	<p>{{  buffet.desc|linebreaksbr }}</p>
+                </div>
 
 		            <br>
-		            <a href="{% url 'buffetinfo.views.buffet_detail' pk=buffet.pk %}"> Reviews: {{ buffet.approved_reviews.count }}</a>
+		            <div id = "reviewslink">
+		            	<a href="{% url 'buffetinfo.views.buffet_detail' pk=buffet.pk %}"> Reviews: {{ buffet.approved_reviews.count }}</a>
+		            </div>
                 </div>
 		            </div>
 		            
 		            <div class = "col-sm-3">
-		            	<h2> Rating: {{ buffet.average_rating }}/5 </h2>
+		            	<div id = "rating"><p> Rating: {{ buffet.average_rating }}/5 </p></div>
+		            	<p>
+                                
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
 		            </div>
 	    </div>
 	 </div>

@@ -1,5 +1,7 @@
 {% extends 'buffetinfo/base.html' %}
 
+<link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Fjalla+One|Josefin+Slab|Lalezar|Luckiest+Guy|Oleo+Script|Oswald|Passion+One|Shrikhand|Sigmar+One" rel="stylesheet">
+
 {% block content %}
     <div class = "buffet">
         <div class = "row">
@@ -17,13 +19,17 @@
                 	<a class="btn btn-default" href="{% url 'buffet_edit' pk=buffet.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
                 	<a class="btn btn-default" href="{% url 'buffet_remove' pk=buffet.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                	{% endif %}
-                <h1>{{ buffet.name }}</h1>
-                <h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>
-                <h3> Location: {{ buffet.location }} </h3>
-                <h3> Address: {{ buffet.address }} </h3>
-                <h3> Opening hours: {{ buffet.hrs_opening }} </h3>
-                <h3> Closing hours: {{ buffet.hrs_closing }} </h3>
-                <h3> Contact Number: {{ buffet.phone_number }}</h3>
+                <div id = "buffetdraftname">
+                    <p>{{ buffet.name }}</p>
+                </div>
+                <div id = "morebuffetinfo">
+                    <p>Cuisine Type: {{ buffet.cuisine_type}}</p>
+                    <p> Location: {{ buffet.location }} </p>
+                    <p> Address: {{ buffet.address }} </p>
+                    <p> Opening hours: {{ buffet.hrs_opening }} to {{ buffet.hrs_closing }} </p>
+                    <p> Contact Number: {{ buffet.phone_number }}</p>
+                </div>
+                
                 <div class = "price">
 
                     <style type="text/css">
@@ -32,7 +38,8 @@
                     .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
                     .tg .tg-yw4l{vertical-align:top}
                     </style>
-                    <table class="tg">
+                    <div id = "pricetable">
+                        <table class="table table-striped">
                         <tr>
                             <th class="tg-yw4l" rowspan="2"></th>
                             <th class="tg-yw4l" colspan="2">Weekday</th>
@@ -74,12 +81,24 @@
                         </tr>
                     </table>
                     
+                
                 </div>
-                <p>{{  buffet.desc|linebreaksbr }}</p>
+                <div id = "buffetdescription">
+                    <p>{{  buffet.desc|linebreaksbr }}</p>
+                </div>
             </div>
             <div class = "col-sm-3">
-                <h2> Rating: {{ buffet.average_rating }}/5 </h2>
-            </div>
+                        <div id = "rating"><p> Rating: {{ buffet.average_rating }}/5 </p></div>
+                        <p>
+                                
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                
+                                </p>
+                    </div>
         </div>
     </div>
 

@@ -1,14 +1,20 @@
 {% extends 'buffetinfo/base.html' %}
 
+<link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Fjalla+One|Josefin+Slab|Lalezar|Luckiest+Guy|Oleo+Script|Oswald|Passion+One|Shrikhand|Sigmar+One" rel="stylesheet">
+
 
 {% block content %}
 <div class="container">
-    <h1>Submit a new buffet place!</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+	<div id = "newbuffet">
+    	<p>Recommend a Buffet Place!</p>
+    </div>
+    <div id = "form">
+    	<form method="POST" class="post-form">{% csrf_token %}
     	<div class="form-group">
         	{{ form.as_p }}
         </div>
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+        <button type="submit" class="save btn btn-default">Submit</button>
+    	</form>
+  	</div>
 </div>
 {% endblock %}

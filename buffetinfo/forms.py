@@ -7,9 +7,33 @@ class BuffetForm(forms.ModelForm):
     class Meta:
         model = Buffet
         labels = {
-            'name': "Name Of Place",
+            'name': "Name Of Buffet",
             'desc': "Description",
-            'cuisine_type' : "Type of cuisine"
+            'cuisine_type' : "Type of cuisine", 
+            'hrs_opening' : "Opening Hours **[Please use the following format: HH:MM:SS 24-hour format]** ",
+            'hrs_closing' : "Closing Hours **[Please use the following format: HH:MM:SS 24-hour format]** ",
+            'weekday_adult_lunch_price' : "Weekday Adult Lunch Price **Compulsory** ",
+            'weekday_adult_dinner_price' : "Weekday Adult Dinner Price **Compulsory** ",
+            
+            'weekend_adult_lunch_price' : "Weekend Adult Lunch Price (in S$) **Compulsory** ",
+            'weekend_adult_dinner_price' : "Weekend Adult Dinner Price (in S$) **Compulsory** ",
+
+            'weekday_adult_breakfast_price' : "Weekday Adult Breakfast Price (in S$) ",
+            'weekday_adult_hightea_price' : "Weekday Adult High Tea Price (in S$) ",
+            
+            'weekday_child_breakfast_price' : "Weekday Child Breakfast Price (in S$) ",
+            'weekday_child_lunch_price' : "Weekday Child Lunch Price (in S$) ",
+            'weekday_child_hightea_price' : "Weekday Child High Tea Price (in S$) ",
+            'weekday_child_dinner_price' : "Weekday Child Dinner Price (in S$) ",
+
+            'weekend_adult_breakfast_price' : "Weekend Adult Breakfast Price (in S$) ",
+            'weekend_adult_hightea_price' : "Weekend Adult High Tea Price (in S$) ",
+
+            'weekend_child_breakfast_price' : "Weekend Child Breakfast Price (in S$) ",
+            'weekend_child_lunch_price' : "Weekend Child Lunch Price (in S$) ",
+            'weekend_child_hightea_price' : "Weekend Child High Tea Price (in S$) ",
+            'weekend_child_dinner_price' : "Weekend Child Dinner Price (in S$) "
+
         }
         fields = ('name', 
                   'location', 
