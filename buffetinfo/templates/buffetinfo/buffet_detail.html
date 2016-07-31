@@ -86,6 +86,13 @@
                 <div id = "buffetdescription">
                     <p>{{  buffet.desc|linebreaksbr }}</p>
                 </div>
+
+            {% load social_share %}
+
+            {% post_to_facebook buffet "Post to Facebook!" %}
+            {% post_to_twitter "I love {{buffet.name}}'s buffet. Check it out!" buffet "Post to Twitter" %}
+            {% post_to_gplus buffet "Post to Google+!" %}
+
             </div>
             <div class = "col-sm-3">
                         <div id = "rating"><p> Rating: {{ buffet.average_rating }}/5 </p></div>

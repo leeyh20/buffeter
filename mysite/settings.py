@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'buffetinfo',
-    'useradmin'
+    'useradmin',
+    'django_social_share',
 ]
 
 MIDDLEWARE_CLASSES = [
