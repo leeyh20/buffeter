@@ -16,39 +16,44 @@
 </button>
 {% endblock %}
 
-{% block nav %}
-<div class="collapse navbar-collapse navbar-top-menu-collapse col-sm-8">
-    <ul class="nav navbar-nav">
-        <li class="dropdown">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Buffets <b class="caret"></b></a>
-            <ul class="dropdown-menu white">
-                <h2> Sort by: </h2>
-                <h2> Filter by: </h2>
-    <form method="POST" class="post-form">{%csrf_token %}
-        {{ form.as_p}}
-        <!-- <button type="submit" class="save btn" btn-default> Filter now!</button> -->
-    </form>
-                <li class="divider"></li>
-                <li><a href="{% url 'buffet_promotions' %}">Promotions</a></li>
-            </ul>
-        </li>
-    </ul>
-    </div>
-{% endblock %}
+
 
 {% block content %}
-
+<!--
 	{% if user.is_staff %}
 	<div id = "welcome">
-    	<p> Welcome, staff! </p>
+    	<p> Welcome, admin! </p>
     </div>
     {% endif %}
-    
+-->
     {% if search_term != "" %}
         <h2> Searching for: {{ search_term }} </h2>
     {% else %}
     	<div id = "buffetlist">
         	<p> Buffets </p>
+        </div>
+
+        <div id = "buffetsort">
+            <p> Filter by: </p>
+            <form method="POST" class="post-form">
+                {%csrf_token %}
+
+                <style type="text/css">
+                    td {display: inline-block; font-size: 20;}    
+                    td.spaced {margin-left: 40px;}
+                </style>
+
+                <table>
+                    <tr>
+                        <td>{{ form.location.label_tag }}</td>
+                        <td>{{ form.location }}</td>
+                        <td class="spaced"></td>
+                        <td>{{ form.cuisine_type.label_tag }}</td>
+                        <td>{{ form.cuisine_type }}</td>
+                    </tr>
+                </table>
+
+            </form>
         </div>
     {% endif %}
 
