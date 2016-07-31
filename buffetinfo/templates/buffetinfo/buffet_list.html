@@ -90,7 +90,7 @@
 		            <div id = "pricetable">
                     	<table class="table table-striped">
                         <tr>
-                            <th class="tg-yw4l" rowspan="2"></th>
+                            <th class="tg-yw4l" rowspan="2">Prices</th>
                             <th class="tg-yw4l" colspan="2">Weekday</th>
                             <th class="tg-yw4l" colspan="2">Weekend</th>
                         </tr>
@@ -147,12 +147,36 @@
 		            	<div id = "rating"><p> Rating: {{ buffet.average_rating }}/5 </p></div>
 		            	<p>
                                 
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
+                                {% if buffet.number_of_stars == "0" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" or buffet.number_of_stars == "3" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" or buffet.number_of_stars == "3" or buffet.number_of_stars == "4" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+                        </p>
 		            </div>
 	    </div>
 	 </div>
