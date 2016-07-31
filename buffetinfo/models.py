@@ -132,9 +132,24 @@ class Buffet(models.Model):
             return "1"
         return "0"
 
-
     def approved_reviews(self):
         return self.reviews.filter(approved_review=True)
+
+    def get_image(self):
+        reviews = self.approved_reviews()
+        review_with_image = None
+        i = 0
+        while(i < len(reviews) and not reviews[i].images.first()):
+            i = i + 1
+        
+        if (i < len(reviews)):
+            review_with_image = reviews[i]
+
+        if (review_with_image):
+            return review_with_image.images.first()
+        else:
+            return None;
+
 
 class Review(models.Model):
     RATING_CHOICES = (

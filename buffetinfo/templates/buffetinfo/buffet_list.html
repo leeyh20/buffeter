@@ -65,6 +65,10 @@
                     <div id = "buffetname">    
 		            	<p><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></p>
 		            </div>
+                    {% if buffet.get_image.image %}
+                    <a href = "{{ buffet.get_image.image.url }}"> <img src="{{ buffet.get_image.image.url }}" height="200"> </a>
+                    {% endif %}
+                    <br> <br>
 		            <!--<h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>-->
 		            <div id = "buffetlocation">
 		            	<p> Location: {{ buffet.location }} </p>
