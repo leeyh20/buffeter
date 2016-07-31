@@ -76,7 +76,7 @@
         <li><a href="{% url 'buffet_new' %}"> Add buffet</a></li>
         <li><a href="{% url 'buffet_draft_list' %}"> Drafts</a></li>
         <li> <a href="{% url 'logout' %}">Logout</a></li>
-        <li><a> Welcome, {{ user.username }} ! </a></li>
+        <li><a href = "{% url 'account_profile' %}"> Welcome, {{ user.username }} ! </a></li>
         {% else %}
         <li><a href="{% url 'buffet_promotions' %}"> Promotions</a></li>
         <li><a href="{% url 'login' %}">Login</a></li>
