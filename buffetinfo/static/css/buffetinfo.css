@@ -34,12 +34,12 @@
 }
 .navbar-default .navbar-text {
   color: #FFF;
-  font-size: 22;
+  font-size: 18;
   font-family: 'Luckiest Guy', cursive;
 }
 .navbar-default .navbar-nav > li > a {
   color: #FFF;
-  font-size: 22;
+  font-size: 18;
   font-family: 'Luckiest Guy', cursive;
 }
 
@@ -47,6 +47,11 @@
   color: #B4C2D3;
   font-size: 22;
   font-family: 'Luckiest Guy', cursive;
+}
+
+.navbar-default .navbar-nav{
+    margin-left: -60px;
+
 }
 
 .dropdown-menu {
@@ -62,8 +67,9 @@
 }
 
 #welcome{
-    font-size: 32;
+    font-size: 18;
     font-family: 'Passion One', cursive;
+    color: white;
 
 }
 
@@ -185,4 +191,13 @@
 #createlabels{
     font-family: 'Fjalla One', sans-serif;
     font-size: 18;
+}
+
+#buffetsort{
+    font-size: 28;
+    font-family: 'Oswald', sans-serif;
+}
+
+#searchbar{
+
 }
