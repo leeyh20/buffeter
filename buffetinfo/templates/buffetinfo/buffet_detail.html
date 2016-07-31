@@ -125,6 +125,7 @@
         </div>
     </div>
 
+{% if buffet.published_date %}
     <hr>
     <h2> Reviews </h2>
     {% if user.is_authenticated %}
@@ -192,4 +193,5 @@
     {% empty %}
         <p>No reviews yet :(</p>
     {% endfor %}
+{% endif %}
 {% endblock %}
