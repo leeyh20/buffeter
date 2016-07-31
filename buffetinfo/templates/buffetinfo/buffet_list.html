@@ -29,19 +29,18 @@
             <p> Filter by: </p>
             <form method="POST" class="post-form">
                 {%csrf_token %}
-
+                
                 <style type="text/css">
-                    td {display: inline-block; font-size: 20;}    
+                    td.filters {display: inline-block; font-size: 20;}    
                     td.spaced {margin-left: 40px;}
                 </style>
-
                 <table>
                     <tr>
-                        <td>{{ form.location.label_tag }}</td>
-                        <td>{{ form.location }}</td>
+                        <td class ="filters">{{ form.location.label_tag }}</td>
+                        <td class = "filters">{{ form.location }}</td>
                         <td class="spaced"></td>
-                        <td>{{ form.cuisine_type.label_tag }}</td>
-                        <td>{{ form.cuisine_type }}</td>
+                        <td class ="filters">{{ form.cuisine_type.label_tag }}</td>
+                        <td class = "filters">{{ form.cuisine_type }}</td>
                     </tr>
                 </table>
 
