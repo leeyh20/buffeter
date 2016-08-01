@@ -89,6 +89,7 @@
 
             {% load social_share %}
 
+<<<<<<< HEAD
             <div id = "socialshare">
             <img src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-facebook-circle-128.png" alt=""style="width:32px;height:32px;"> 
 
@@ -106,6 +107,11 @@
                 </div>
 
             </div>
+=======
+            {% post_to_facebook buffet "Post to Facebook!" %}
+            {% post_to_twitter "I love {{buffet.name}}'s buffet. Check it out!" buffet "Post to Twitter" %}
+            {% post_to_gplus buffet "Post to Google+!" %}
+>>>>>>> c4b24d5d17950114cdb07d63ed4ddd849be5872a
 
             </div>
             <div class = "col-sm-3">
