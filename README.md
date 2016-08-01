@@ -168,16 +168,18 @@ As a user who wants to manage the contents (moderator status), I need to be able
 
 <p><b>User Story #6</b>
 <br>
-As a user who wants to manage my account, I need to be able to edit my user profile and see my points. To do this, the web app should have an editable profile page.</p>
+As a user who wants to manage my account, I need to be able to edit my user profile. To do this, the web app should have an editable profile page.</p>
 
 <h2>List Of Technologies Learned/Applied In The Project</h2>
 
 <p>- Django
-<br>- Python
+<br>- Regex expressions
+<br>- Python / PIP
+<br>- Bootstrap and Jquery
 <br>- HTML
 <br>- CSS
 <br>- Github
-<br>- Sqlite
+<br>- Sqlite / SQL
 </p>
 
 
