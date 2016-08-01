@@ -106,6 +106,81 @@ As a user who wants to manage the contents (moderator status), I need to be able
 <br>
 As a user who wants to manage my account, I need to be able to edit my user profile and see my points. To do this, the web app should have an editable profile page.</p>
 
+<h1>MILESTONE 3</h1>
+
+<h4>Please click <a href="http://buffeterapp.pythonanywhere.com/" target="_blank">here</a> to view our web app prototype</h4>
+
+<p><b>List of Features Implemented</b></p>
+
+<p>- Filter by location and type of cuisine
+<br>- Search bar to search for buffets
+<br>- Share on social media
+<br>- Promotions carousel
+<br>- Recommend a buffet
+<br>- Review a buffet
+<br>- Users profile page
+</p>
+
+<h2>Specification of Features</h2>
+
+<p><b>Filter by location and type of cuisine</b>
+<br>Consist of 2 drop down list; One which filters the buffets based on location and the other filters based on the cuisine type.</p>
+
+<p><b>Search bar to search for buffets</b>
+<br>Users can type the name of the buffet or certain keywords about the buffet in the search.</p>
+
+<p><b>Sharing on social media</b>
+<br>Users can share information of the buffet on various social media platforms such as Facebook, Twitter and Google Plus.</p>
+
+<p><b>Promotions carousel</b>
+<br>Consists of the latest and on-going promotions of different buffet restaurants.</p>
+
+<p><b>Recommend a buffet</b>
+<br>Users who wish to suggest a buffet restaurant which is not already in the list may do so.</p>
+
+<p><b>Review a buffet</b>
+<br>Users who have been to the buffet restaurant who wish to give their feedback may do so.</p>
+
+<p><b>Users profile page</b>
+<br>Allows users to add  a profile picture and other details about themselves.</p>
+
+<h2>User Stories</h2>
+
+<p><b>User Story #1</b>
+<br>
+As a user who is looking for buffet restaurants, I need to be able to search for buffet restaurants. To do this, the web app should allow me to search for buffet restaurants and filter the results by price, location, type of cuisine, promotions available etc.</p>
+
+<p><b>User Story #2</b>
+<br>
+As a user who wants to review a buffet restaurant, I need to be able to submit reviews. To do this, the web app should allow me to create, update and delete my reviews.</p>
+
+<p><b>User Story #3</b>
+<br>
+As a user who wants to suggest a new buffet restaurant, I need to be able to submit my suggestions. To do this, the web app should allow me to create, update and delete my suggestions.</p>
+
+<p><b>User Story #4</b>
+<br>
+As a user who wants to tell a friend about the buffet restaurant, I need to be able to share the information through social media. To do this, the web app should allow me to share information about the buffet with my friends on Facebook, Whatsapp etc.</p>
+
+<p><b>User Story #5</b>
+<br>
+As a user who wants to manage the contents (moderator status), I need to be able to manage the reviews and suggestions submitted by the public. To do this, the web app should have an admin’s panel.</p>
+
+<p><b>User Story #6</b>
+<br>
+As a user who wants to manage my account, I need to be able to edit my user profile and see my points. To do this, the web app should have an editable profile page.</p>
+
+<h2>List Of Technologies Learned/Applied In The Project</h2>
+
+<p>- Django
+<br>- Python
+<br>- HTML
+<br>- CSS
+<br>- Github
+<br>- Sqlite
+</p>
+
+
 
 
 
