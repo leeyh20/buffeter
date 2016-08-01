@@ -41,7 +41,7 @@
                     <div id = "pricetable">
                         <table class="table table-striped">
                         <tr>
-                            <th class="tg-yw4l" rowspan="2"></th>
+                            <th class="tg-yw4l" rowspan="2">Prices</th>
                             <th class="tg-yw4l" colspan="2">Weekday</th>
                             <th class="tg-yw4l" colspan="2">Weekend</th>
                         </tr>
@@ -86,22 +86,67 @@
                 <div id = "buffetdescription">
                     <p>{{  buffet.desc|linebreaksbr }}</p>
                 </div>
+
+            {% load social_share %}
+
+            <div id = "socialshare">
+            <img src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-facebook-circle-128.png" alt=""style="width:32px;height:32px;"> 
+
+                <div id = "postfb">
+                    {% post_to_facebook buffet "Share on Facebook!" %}
+                </div>
+            <img src="https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-twitter-circle-128.png" alt=""style="width:32px;height:32px;">
+                <div id = "posttw">
+                    {% post_to_twitter "I love {{buffet.name}}'s buffet. Check it out!" buffet "Share on Twitter" %}
+                </div>
+            <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/circle-google-plus-128.png" alt=""style="width:32px;height:32px;">
+                <div id = "postgp">
+                
+                    {% post_to_gplus buffet "Share on Google+!" %}
+                </div>
+
+            </div>
+
             </div>
             <div class = "col-sm-3">
                         <div id = "rating"><p> Rating: {{ buffet.average_rating }}/5 </p></div>
-                        <p>
+                            <p>
+                                {% if buffet.number_of_stars == "0" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" or buffet.number_of_stars == "3" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" or buffet.number_of_stars == "3" or buffet.number_of_stars == "4" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
                                 
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                
-                                </p>
+                            </p>
                     </div>
         </div>
     </div>
 
+{% if buffet.published_date %}
     <hr>
     <h2> Reviews </h2>
     {% if user.is_authenticated %}
@@ -133,9 +178,41 @@
 
                 <p>{{ review.comment|linebreaks }}</p>
                 <p> Rating: {{ review.rating }} </p>
+                <p>     
+                        {% if review.rating == 0 %}
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        {% else %}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {% endif %}
+
+                        {% if review.rating == 0 or review.rating == 1 %}
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        {% else %}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {% endif %}
+
+                        {% if review.rating == 0 or review.rating == 1 or review.rating == 2 %}
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        {% else %}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {% endif %}
+
+                        {% if review.rating == 0 or review.rating == 1 or review.rating == 2 or review.rating == 3 %}
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        {% else %}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {% endif %}
+
+                        {% if review.rating == 0 or review.rating == 1 or review.rating == 2 or review.rating == 3 or review.rating == 4 %}
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        {% else %}
+                        <span class="glyphicon glyphicon-star"></span>
+                        {% endif %}
+                </p>
             </div>
             {% endif %}
     {% empty %}
         <p>No reviews yet :(</p>
     {% endfor %}
+{% endif %}
 {% endblock %}

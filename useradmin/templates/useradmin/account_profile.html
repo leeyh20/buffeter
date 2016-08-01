@@ -1,0 +1,40 @@
+{% extends "buffetinfo/base.html" %}
+
+{% block content %}
+<div class="container">
+    <div id = "newbuffet">
+        <p>Profile</p>
+    </div>
+    <div id = "form">
+        <form method="POST" class="post-form">{% csrf_token %}
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td>{{ form.birth_date.label_tag }} YYYY-MM-DD </td>
+                    <td>{{ form.birth_date }} </td>
+                </tr>
+                <tr>
+                    <td>{{ form.gender.label_tag }} </td>
+                    <td>{{ form.gender }} </td>
+                </tr>
+                <tr>
+                    <td>{{ form.profile_pic.label_tag }}</td>
+                    <td> 
+                    {% if pic %}
+                    <img src = "{{ pic.url }}" height="200">
+                    {% endif %}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>  </td>
+                    <td> {{ form.profile_pic }} </td>
+                </tr>
+                    
+            </table>
+        </div>
+        <button type="submit" class="save btn btn-default">Save Profile</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

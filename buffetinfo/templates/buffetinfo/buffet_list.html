@@ -10,14 +10,6 @@
 {% endfor %}
 {% endblock %}
 
-{% block navicon %}
-<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-top-menu-collapse">
-    <i class="glyphicon glyphicon-list"></i>
-</button>
-{% endblock %}
-
-
-
 {% block content %}
 <!--
 	{% if user.is_staff %}
@@ -37,19 +29,18 @@
             <p> Filter by: </p>
             <form method="POST" class="post-form">
                 {%csrf_token %}
-
+                
                 <style type="text/css">
-                    td {display: inline-block; font-size: 20;}    
+                    td.filters {display: inline-block; font-size: 20;}    
                     td.spaced {margin-left: 40px;}
                 </style>
-
                 <table>
                     <tr>
-                        <td>{{ form.location.label_tag }}</td>
-                        <td>{{ form.location }}</td>
+                        <td class ="filters">{{ form.location.label_tag }}</td>
+                        <td class = "filters">{{ form.location }}</td>
                         <td class="spaced"></td>
-                        <td>{{ form.cuisine_type.label_tag }}</td>
-                        <td>{{ form.cuisine_type }}</td>
+                        <td class ="filters">{{ form.cuisine_type.label_tag }}</td>
+                        <td class = "filters">{{ form.cuisine_type }}</td>
                     </tr>
                 </table>
 
@@ -65,6 +56,10 @@
                     <div id = "buffetname">    
 		            	<p><a href="{% url 'buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></p>
 		            </div>
+                    {% if buffet.get_image.image %}
+                    <a href = "{{ buffet.get_image.image.url }}"> <img src="{{ buffet.get_image.image.url }}" height="200"> </a>
+                    {% endif %}
+                    <br> <br>
 		            <!--<h3>Cuisine Type: {{ buffet.cuisine_type}}</h3>-->
 		            <div id = "buffetlocation">
 		            	<p> Location: {{ buffet.location }} </p>
@@ -95,7 +90,7 @@
 		            <div id = "pricetable">
                     	<table class="table table-striped">
                         <tr>
-                            <th class="tg-yw4l" rowspan="2"></th>
+                            <th class="tg-yw4l" rowspan="2">Prices</th>
                             <th class="tg-yw4l" colspan="2">Weekday</th>
                             <th class="tg-yw4l" colspan="2">Weekend</th>
                         </tr>
@@ -152,12 +147,36 @@
 		            	<div id = "rating"><p> Rating: {{ buffet.average_rating }}/5 </p></div>
 		            	<p>
                                 
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
+                                {% if buffet.number_of_stars == "0" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" or buffet.number_of_stars == "3" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+
+                                {% if buffet.number_of_stars == "0" or buffet.number_of_stars == "1" or buffet.number_of_stars == "2" or buffet.number_of_stars == "3" or buffet.number_of_stars == "4" %}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                {% else %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endif %}
+                        </p>
 		            </div>
 	    </div>
 	 </div>

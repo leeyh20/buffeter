@@ -198,6 +198,52 @@
     font-family: 'Oswald', sans-serif;
 }
 
-#searchbar{
+#socialshare{
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 14;
+    margin-bottom: 50px;
+}
 
+#postfb{
+    margin-top: -25px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+#posttw{
+    margin-top: -25px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+#postgp{
+    margin-top: -25px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+#promotionstitle{
+    font-size: 40;
+    font-family: 'Shrikhand', cursive; 
+    text-align: center;
+    background-color: #B69E68;
+    color: #7B4A1F;
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+#carousel-example-generic{
+    /*width: 970px;
+    height: 500px;*/
 }

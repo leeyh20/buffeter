@@ -1,7 +1,9 @@
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
-from .forms import AccountForm
+from .forms import AccountForm, ProfileForm
+from .models import UserProfile
 
 def account_new(request):
     if request.method == "POST":
@@ -18,3 +20,25 @@ def account_new(request):
     else:
         form = AccountForm()
     return render(request, 'useradmin/account_new.html', {'form': form})
+
+def account_profile(request):
+    if (request.user.is_authenticated()):
+        profile = get_object_or_404(UserProfile, user= request.user)
+        if request.method == "POST":
+            form = ProfileForm(request.POST, instance=profile)
+            if form.is_valid():
+                profile = form.save(commit=False)
+                if (not profile.user):
+                    profile.user = request.user
+                profile.birth_date = form.cleaned_data['birth_date']
+                profile.gender = form.cleaned_data['gender']
+                profile.profile_pic = form.cleaned_data['profile_pic']
+                profile.save() 
+                return redirect('/')
+        else:
+            form = ProfileForm(instance=profile)
+        return render(request, 'useradmin/account_profile.html', {'form': form, 'pic': profile.profile_pic})
+    else:
+        return render(request, 'useradmin/account_noprofile.html')
+
+    

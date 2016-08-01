@@ -110,15 +110,49 @@ class Buffet(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return "/buffet/"+str(self.id)
+
     #calcuateeaveragerating
     def average_rating(self):
+        #returns string
         all_ratings = map(lambda x: x.rating, self.reviews.filter(approved_review=True))
-        if (self.reviews.count() > 0):
+        if (self.reviews.filter(approved_review=True).count() > 0):
             return '{:03.2f}'.format(statistics.mean(all_ratings))
-        return 0.0
+        return "0.00"
+
+    #return string because django template tags will turn it into a string anyway
+    def number_of_stars(self):
+        if (float(self.average_rating()) >= 5.0):
+            return "5"
+        elif (float(self.average_rating()) >= 4.0):
+            return "4"
+        elif (float(self.average_rating()) >= 3.0):
+            return "3"
+        elif (float(self.average_rating()) >= 2.0):
+            return "2"
+        elif (float(self.average_rating()) >= 1.0):
+            return "1"
+        return "0"
 
     def approved_reviews(self):
         return self.reviews.filter(approved_review=True)
+
+    def get_image(self):
+        reviews = self.approved_reviews()
+        review_with_image = None
+        i = 0
+        while(i < len(reviews) and not reviews[i].images.first()):
+            i = i + 1
+        
+        if (i < len(reviews)):
+            review_with_image = reviews[i]
+
+        if (review_with_image):
+            return review_with_image.images.first()
+        else:
+            return None;
+
 
 class Review(models.Model):
     RATING_CHOICES = (

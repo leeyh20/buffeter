@@ -156,6 +156,3 @@ def review_remove(request, pk):
 
 def buffet_promotions(request):
     return render(request, 'buffetinfo/buffet_promotions.html')
-
-def account_login(request):
-    return render(request, 'registration/account_login.html')

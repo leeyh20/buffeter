@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'buffetinfo',
-    'useradmin'
+    'useradmin',
+    'django_social_share',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -124,3 +126,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media' ) 
 MEDIA_URL = '/media/'
+
+SITE_ID = 1
