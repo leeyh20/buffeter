@@ -166,10 +166,6 @@ As a user who wants to tell a friend about the buffet restaurant, I need to be a
 <br>
 As a user who wants to manage the contents (moderator status), I need to be able to manage the reviews and suggestions submitted by the public. To do this, the web app should have an admin’s panel.</p>
 
-<p><b>User Story #6</b>
-<br>
-As a user who wants to manage my account, I need to be able to edit my user profile and see my points. To do this, the web app should have an editable profile page.</p>
-
 <h2>List Of Technologies Learned/Applied In The Project</h2>
 
 <p>- Django
