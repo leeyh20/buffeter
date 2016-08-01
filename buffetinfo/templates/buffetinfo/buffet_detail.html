@@ -148,7 +148,9 @@
 
 {% if buffet.published_date %}
     <hr>
-    <h2> Reviews </h2>
+    <div id = "reviewheading">
+        <p> Reviews </p>
+    </div>
     {% if user.is_authenticated %}
         <a class="btn btn-default" href="{% url 'add_review_to_buffet' pk=buffet.pk %}">Add Review</a>
     {% endif %}
