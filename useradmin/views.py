@@ -27,13 +27,14 @@ def account_profile(request):
         if request.method == "POST":
             form = ProfileForm(request.POST, request.FILES, instance=profile)
             if form.is_valid():
-
+                
                 profile.birth_date = form.cleaned_data["birth_date"]
                 profile.gender = form.cleaned_data["gender"]
                 profile.profile_pic = form.cleaned_data["profile_pic"]
-                
+
                 if (not profile.user):
                     profile.user = request.user
+
                 profile.save() 
                 return redirect('/')
         else:

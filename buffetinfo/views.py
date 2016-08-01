@@ -94,7 +94,10 @@ def buffet_edit(request, pk):
 
 @login_required
 def buffet_draft_list(request):
-    buffets = Buffet.objects.filter(published_date__isnull=True, author=request.user).order_by('created_date')
+    if (request.user.is_staff):
+        buffets = Buffet.objects.filter(published_date__isnull=True).order_by('created_date')
+    else:
+        buffets = Buffet.objects.filter(published_date__isnull=True, author=request.user).order_by('created_date')
     return render(request, 'buffetinfo/buffet_draft_list.html', {'buffets': buffets})
 
 @login_required

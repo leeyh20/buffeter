@@ -4,12 +4,13 @@
 
 {% block content %}
 <div id = "buffetdraft">
-	<p> Buffet Recommendation Drafts </p>
+	<p> Buffet Recommendation Drafts {% if user.is_staff %} (for staff) {% endif %} </p>
+
 </div>
     {% for buffet in buffets %}
         <div class="buffet">
         	<div id = "buffetdraftcreateddate">
-            	<p class="date">Created: {{ buffet.created_date|date:'d-m-Y' }}</p>
+            	<p class="date">Created: {{ buffet.created_date|date:'d-m-Y' }} by {{ buffet.author }}</p>
             </div>
             <div id = "buffetdraftlink">
             	<p>Name: <a href="{% url 'buffetinfo.views.buffet_detail' pk=buffet.pk %}">{{ buffet.name }}</a></p>
