@@ -155,12 +155,16 @@
         <a class="btn btn-default" href="{% url 'add_review_to_buffet' pk=buffet.pk %}">Add Review</a>
     {% endif %}
     {% for review in buffet.reviews.all %}
-        {% if user.is_staff or review.approved_review %}
+        {% if user.is_staff or review.approved_review or review.author == user %}
             <div class="review">
-                {% if not review.approved_review and user.is_staff %}
+                {% if not review.approved_review %}
                     <p> Not approved yet </p>
+                    {% if user.is_staff or review.author == user %}
                     <a class="btn btn-default" href="{% url 'review_remove' pk=review.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                    {% endif %}
+                    {% if user.is_staff %}
                     <a class="btn btn-default" href="{% url 'review_approve' pk=review.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                    {% endif %}
                 {% endif %}
 
                 <div class="date">
