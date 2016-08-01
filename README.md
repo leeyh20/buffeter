@@ -194,8 +194,12 @@ Overall, he felt the app could have more of a "wow" factor if we had a main sell
 </p>
 
 <p> <b> Usability Testing with Potential Users with High-Fidelity artefacts </b>
-<br> Though our live and deployed app, we asked our friends aged 20 to 23 to try out our app. One commented that the mobile version looked lacking compared to the desktop version. Another commented that she could imagine using the app
+<br> Through our live and deployed app, we asked our friends aged 20 to 23 to try out our app. One commented that the mobile version looked lacking compared to the desktop version. Another commented that she could imagine using the app
 especially if there are enticing promotions on the site.
+
+<br>We asked each of them to complete some tasks using our web app. The tasks are as follows: Add a review, Recommend a Buffet, Add/change profile picture, Search for Buffet, Filter Buffet List, Create a new User Account and Log In.
+
+<br>Two of them felt that the form on Recommend a Buffet page was too long and tedious to fill in. One felt that the location filter for the buffet list had too many locations with no buffets but the search bar was okay. One feedbacked that the number of images allowed in reviews could be increased. Most of them found the creating of new user account and logging in hassle-free. Generally, they were satisfied and pleased with using the BUFFETER web app.
 </p>
 
 <h2> Future ideas </h2>
