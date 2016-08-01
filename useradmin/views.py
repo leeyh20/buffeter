@@ -25,14 +25,15 @@ def account_profile(request):
     if (request.user.is_authenticated()):
         profile = get_object_or_404(UserProfile, user= request.user)
         if request.method == "POST":
-            form = ProfileForm(request.POST, instance=profile)
+            form = ProfileForm(request.POST, request.FILES, instance=profile)
             if form.is_valid():
-                profile = form.save(commit=False)
+
+                profile.birth_date = form.cleaned_data["birth_date"]
+                profile.gender = form.cleaned_data["gender"]
+                profile.profile_pic = form.cleaned_data["profile_pic"]
+                
                 if (not profile.user):
                     profile.user = request.user
-                profile.birth_date = form.cleaned_data['birth_date']
-                profile.gender = form.cleaned_data['gender']
-                profile.profile_pic = form.cleaned_data['profile_pic']
                 profile.save() 
                 return redirect('/')
         else:
