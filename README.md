@@ -183,6 +183,25 @@ As a user who wants to manage my account, I need to be able to edit my user prof
 </p>
 
 
+<h2>User Testing</h2>
+<p> <b> Expert/ Self Evaluation </b>
+<br>
+Our mentor commented that the search was good. Suggested us to add photos to buffets on the homepage. He also suggested to add the number of buffets in the different filters on the drop-down box and to make search terms clearer while searching. 
+Overall, he felt the app could have more of a "wow" factor if we had a main selling point. We wanted to focus on promotions, so we added a promotions page. If we had more time, we would like to do a review voting system and user reward system for giving good reviews and suggesting good buffets.</p> 
+
+<p> <b> User Stories </b>
+<br> We believe that we have fulfilled all the user stories :)
+</p>
+
+<p> <b> Usability Testing with Potential Users with High-Fidelity artefacts </b>
+<br> Though our live and deployed app, we asked our friends aged 20 to 23 to try out our app. One commented that the mobile version looked lacking compared to the desktop version. Another commented that she could imagine using the app
+especially if there are enticing promotions on the site.
+</p>
+
+<h2> Future ideas </h2>
+<p> Active users can even be rewarded with real discounts such that more people will help to update the buffets on the site. Plus, it could promote certain restaurants and buffets (commercial value)
+</p>
+
 
 
 
